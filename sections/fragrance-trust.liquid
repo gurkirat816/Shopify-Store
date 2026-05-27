@@ -1,0 +1,74 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+<div class="fragrance-home">
+  <div class="fragrance-home__trust-row" aria-label="{{ section.settings.aria_label | escape }}">
+    {% for block in section.blocks %}
+      <div {{ block.shopify_attributes }}>
+        <strong>{{ block.settings.title }}</strong>
+        <span>{{ block.settings.text }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Fragrance trust row",
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Shopping benefits"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Authentic selection"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Curated parfum, oud, musk, and daily-wear scents."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance trust row",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Authentic selection",
+            "text": "Curated parfum, oud, musk, and daily-wear scents."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Gift-ready presentation",
+            "text": "Elegant shopping paths for birthdays, events, and self-gifting."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "title": "Easy discovery",
+            "text": "Shop by mood, concentration, occasion, and scent family."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

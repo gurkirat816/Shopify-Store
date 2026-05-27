@@ -1,0 +1,96 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+<div class="fragrance-home">
+  <section class="fragrance-home__reviews">
+    <div class="fragrance-home__reviews-heading">
+      <p class="fragrance-home__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="fragrance-home__review-grid">
+      {% for block in section.blocks %}
+        <article {{ block.shopify_attributes }}>
+          <span>{{ block.settings.label }}</span>
+          <p>{{ block.settings.quote }}</p>
+          <strong>{{ block.settings.name }}</strong>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Fragrance reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Customer notes"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Designed to make buying perfume feel confident."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "4.9 / 5"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "The store feels premium and makes it easy to choose a gift without guessing."
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Gift shopper"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "label": "4.9 / 5",
+            "quote": "The store feels premium and makes it easy to choose a gift without guessing.",
+            "name": "Gift shopper"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "label": "Long-wear picks",
+            "quote": "I like that the collections separate everyday scents from deeper evening fragrances.",
+            "name": "Daily fragrance wearer"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "label": "Discovery first",
+            "quote": "The layout helps people browse by mood, not just by product name.",
+            "name": "New customer"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

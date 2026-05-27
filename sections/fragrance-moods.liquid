@@ -1,0 +1,139 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+<div class="fragrance-home">
+  <section class="fragrance-home__moods" aria-label="{{ section.settings.aria_label | escape }}">
+    {% for block in section.blocks %}
+      {% liquid
+        assign mood_link = block.settings.link
+        if mood_link == blank
+          assign mood_link = routes.all_products_collection_url
+        endif
+      %}
+      <a
+        href="{{ mood_link }}"
+        class="fragrance-home__mood-card fragrance-home__mood-card--{{ block.settings.style }}"
+        {{ block.shopify_attributes }}
+      >
+        <span>{{ block.settings.eyebrow }}</span>
+        <strong>{{ block.settings.title }}</strong>
+        <small>{{ block.settings.text }}</small>
+      </a>
+    {% endfor %}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Fragrance mood cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Shop by mood"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mood",
+      "name": "Mood",
+      "settings": [
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Card style",
+          "options": [
+            {
+              "value": "fresh",
+              "label": "Fresh"
+            },
+            {
+              "value": "floral",
+              "label": "Floral"
+            },
+            {
+              "value": "oud",
+              "label": "Oud"
+            },
+            {
+              "value": "night",
+              "label": "Evening"
+            }
+          ],
+          "default": "fresh"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "Fresh"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Clean daily signatures"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Bright citrus, airy musk, soft florals"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance mood cards",
+      "blocks": [
+        {
+          "type": "mood",
+          "settings": {
+            "style": "fresh",
+            "eyebrow": "Fresh",
+            "title": "Clean daily signatures",
+            "text": "Bright citrus, airy musk, soft florals",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "mood",
+          "settings": {
+            "style": "floral",
+            "eyebrow": "Floral",
+            "title": "Romantic and polished",
+            "text": "Rose, jasmine, powder, amber",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "mood",
+          "settings": {
+            "style": "oud",
+            "eyebrow": "Oud",
+            "title": "Warm statement trails",
+            "text": "Woods, spice, resin, smoke",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "mood",
+          "settings": {
+            "style": "night",
+            "eyebrow": "Evening",
+            "title": "Deep after-dark scents",
+            "text": "Vanilla, leather, amber, musk",
+            "link": "shopify://collections/all"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

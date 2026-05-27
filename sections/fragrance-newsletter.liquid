@@ -1,0 +1,81 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+<div class="fragrance-home">
+  <section class="fragrance-home__newsletter">
+    <div>
+      <p class="fragrance-home__eyebrow">{{ section.settings.eyebrow | default: shop.name }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+    </div>
+    {% form 'customer', class: 'fragrance-home__newsletter-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label class="visually-hidden" for="FragranceNewsletter-{{ section.id }}">Email</label>
+      <input
+        id="FragranceNewsletter-{{ section.id }}"
+        type="email"
+        name="contact[email]"
+        value="{{ form.email }}"
+        autocomplete="email"
+        autocorrect="off"
+        autocapitalize="off"
+        placeholder="{{ section.settings.placeholder }}"
+        required
+      >
+      <button type="submit">{{ section.settings.button_label }}</button>
+      {% if form.posted_successfully? %}
+        <p class="fragrance-home__form-message" tabindex="-1" autofocus>{{ section.settings.success_message }}</p>
+      {% elsif form.errors %}
+        <p class="fragrance-home__form-message" tabindex="-1" autofocus>{{ form.errors | default_errors }}</p>
+      {% endif %}
+    {% endform %}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Fragrance newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Dzire Fragrance"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Stay in the world of scent"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "New arrivals, limited edits, and fragrance stories delivered to your inbox."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email placeholder",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you for subscribing."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance newsletter"
+    }
+  ]
+}
+{% endschema %}

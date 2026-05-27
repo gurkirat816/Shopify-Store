@@ -9,13 +9,39 @@
  */
 {
   "sections": {
-    "fragrance_home": {
-      "type": "fragrance-home",
+    "fragrance_hero": {
+      "type": "fragrance-hero",
+      "blocks": {
+        "metric_scents": {
+          "type": "metric",
+          "settings": {
+            "value": "100+",
+            "label": "Scents to explore"
+          }
+        },
+        "metric_edp": {
+          "type": "metric",
+          "settings": {
+            "value": "EDP",
+            "label": "Rich concentration"
+          }
+        },
+        "metric_gift": {
+          "type": "metric",
+          "settings": {
+            "value": "Gift",
+            "label": "Ready presentation"
+          }
+        }
+      },
+      "block_order": [
+        "metric_scents",
+        "metric_edp",
+        "metric_gift"
+      ],
       "settings": {
         "featured_collection": "all",
-        "secondary_collection": "all",
         "hero_image": "",
-        "cta_image": "",
         "eyebrow": "Signature parfum collection",
         "heading": "Fragrance for every occasion",
         "subheading": "Find refined scents for daily rituals, evenings, gifting, and everything between.",
@@ -23,53 +49,364 @@
         "primary_label": "Shop new releases",
         "secondary_link": "shopify://collections/all",
         "secondary_label": "Shop full collection",
-        "metric_one_label": "Scents to explore",
-        "metric_two_value": "EDP",
-        "metric_two_label": "Rich concentration",
-        "metric_three_value": "Gift",
-        "metric_three_label": "Ready presentation",
-        "why_eyebrow": "Why shop with us",
-        "why_heading": "A refined fragrance store built for discovery.",
-        "reason_one_title": "Curated edits",
-        "reason_one_text": "Collections are organized around scent mood, occasion, and daily wear.",
-        "reason_two_title": "Long-wear focus",
-        "reason_two_text": "Product pages give each scent room to feel premium and considered.",
-        "reason_three_title": "Bundle friendly",
-        "reason_three_text": "The layout keeps discovery sets, bundles, and gift shopping easy to scan.",
-        "reason_four_title": "Elegant gifting",
-        "reason_four_text": "A polished visual system gives every product a gift-ready presence.",
-        "featured_eyebrow": "New fragrances",
-        "featured_heading": "Fresh arrivals. Signature energy.",
-        "featured_link_label": "View collection",
+        "show_featured_product": true,
+        "featured_product_label": "Featured scent"
+      }
+    },
+    "fragrance_nav": {
+      "type": "fragrance-nav",
+      "blocks": {
+        "nav_all": {
+          "type": "link",
+          "settings": {
+            "label": "All parfums",
+            "link": "shopify://collections/all"
+          }
+        },
+        "nav_new": {
+          "type": "link",
+          "settings": {
+            "label": "New arrivals",
+            "link": "shopify://collections/all"
+          }
+        },
+        "nav_men": {
+          "type": "link",
+          "settings": {
+            "label": "For him",
+            "link": "shopify://collections/all"
+          }
+        },
+        "nav_women": {
+          "type": "link",
+          "settings": {
+            "label": "For her",
+            "link": "shopify://collections/all"
+          }
+        },
+        "nav_unisex": {
+          "type": "link",
+          "settings": {
+            "label": "Unisex",
+            "link": "shopify://collections/all"
+          }
+        },
+        "nav_arabian": {
+          "type": "link",
+          "settings": {
+            "label": "Arabian perfume",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "nav_all",
+        "nav_new",
+        "nav_men",
+        "nav_women",
+        "nav_unisex",
+        "nav_arabian"
+      ],
+      "settings": {
+        "aria_label": "Popular fragrance categories"
+      }
+    },
+    "fragrance_trust": {
+      "type": "fragrance-trust",
+      "blocks": {
+        "trust_selection": {
+          "type": "benefit",
+          "settings": {
+            "title": "Authentic selection",
+            "text": "Curated parfum, oud, musk, and daily-wear scents."
+          }
+        },
+        "trust_gifting": {
+          "type": "benefit",
+          "settings": {
+            "title": "Gift-ready presentation",
+            "text": "Elegant shopping paths for birthdays, events, and self-gifting."
+          }
+        },
+        "trust_discovery": {
+          "type": "benefit",
+          "settings": {
+            "title": "Easy discovery",
+            "text": "Shop by mood, concentration, occasion, and scent family."
+          }
+        }
+      },
+      "block_order": [
+        "trust_selection",
+        "trust_gifting",
+        "trust_discovery"
+      ],
+      "settings": {
+        "aria_label": "Shopping benefits"
+      }
+    },
+    "fragrance_moods": {
+      "type": "fragrance-moods",
+      "blocks": {
+        "mood_fresh": {
+          "type": "mood",
+          "settings": {
+            "style": "fresh",
+            "eyebrow": "Fresh",
+            "title": "Clean daily signatures",
+            "text": "Bright citrus, airy musk, soft florals",
+            "link": "shopify://collections/all"
+          }
+        },
+        "mood_floral": {
+          "type": "mood",
+          "settings": {
+            "style": "floral",
+            "eyebrow": "Floral",
+            "title": "Romantic and polished",
+            "text": "Rose, jasmine, powder, amber",
+            "link": "shopify://collections/all"
+          }
+        },
+        "mood_oud": {
+          "type": "mood",
+          "settings": {
+            "style": "oud",
+            "eyebrow": "Oud",
+            "title": "Warm statement trails",
+            "text": "Woods, spice, resin, smoke",
+            "link": "shopify://collections/all"
+          }
+        },
+        "mood_evening": {
+          "type": "mood",
+          "settings": {
+            "style": "night",
+            "eyebrow": "Evening",
+            "title": "Deep after-dark scents",
+            "text": "Vanilla, leather, amber, musk",
+            "link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "mood_fresh",
+        "mood_floral",
+        "mood_oud",
+        "mood_evening"
+      ],
+      "settings": {
+        "aria_label": "Shop by mood"
+      }
+    },
+    "fragrance_why": {
+      "type": "fragrance-why",
+      "blocks": {
+        "reason_curated": {
+          "type": "reason",
+          "settings": {
+            "number": "01",
+            "title": "Curated edits",
+            "text": "Collections are organized around scent mood, occasion, and daily wear."
+          }
+        },
+        "reason_wear": {
+          "type": "reason",
+          "settings": {
+            "number": "02",
+            "title": "Long-wear focus",
+            "text": "Product pages give each scent room to feel premium and considered."
+          }
+        },
+        "reason_bundle": {
+          "type": "reason",
+          "settings": {
+            "number": "03",
+            "title": "Bundle friendly",
+            "text": "The layout keeps discovery sets, bundles, and gift shopping easy to scan."
+          }
+        },
+        "reason_gifting": {
+          "type": "reason",
+          "settings": {
+            "number": "04",
+            "title": "Elegant gifting",
+            "text": "A polished visual system gives every product a gift-ready presence."
+          }
+        }
+      },
+      "block_order": [
+        "reason_curated",
+        "reason_wear",
+        "reason_bundle",
+        "reason_gifting"
+      ],
+      "settings": {
+        "eyebrow": "Why shop with us",
+        "heading": "A refined fragrance store built for discovery."
+      }
+    },
+    "fragrance_products": {
+      "type": "fragrance-featured-products",
+      "settings": {
+        "collection": "all",
+        "eyebrow": "New fragrances",
+        "heading": "Fresh arrivals. Signature energy.",
+        "link": "shopify://collections/all",
+        "link_label": "View collection",
         "product_limit": 6,
+        "show_badges": true,
+        "first_badge": "Bestseller",
+        "second_badge": "New",
+        "fallback_vendor": "Parfum",
         "default_product_note": "A polished scent profile designed for daily rituals and evening moments.",
-        "secondary_eyebrow": "Now available",
-        "secondary_heading": "Shop Arabian perfume",
-        "secondary_text": "Explore rich woods, amber trails, musks, spice, and statement scents with depth.",
-        "secondary_cta_label": "Discover collection",
-        "experience_eyebrow": "The scent ritual",
-        "experience_heading": "Made for choosing, wearing, and gifting with confidence.",
-        "experience_one_title": "Discover",
-        "experience_one_text": "Browse by mood, notes, collection, or the moment you want the scent to own.",
-        "experience_two_title": "Wear",
-        "experience_two_text": "Editorial product cards keep key details visible without slowing the shop.",
-        "experience_three_title": "Gift",
-        "experience_three_text": "Collection pathways make it simple to build a thoughtful cart for someone else.",
-        "custom_eyebrow": "A personal experience",
-        "custom_heading": "Create a perfume that feels like yours",
-        "custom_text": "Guide shoppers into a more personal fragrance moment with a clear premium callout.",
-        "custom_step_one": "Choose a scent direction",
-        "custom_step_two": "Refine notes and intensity",
-        "custom_step_three": "Bottle it for daily wear or gifting",
-        "custom_link": "shopify://collections/all",
-        "custom_cta_label": "Start custom scent",
-        "newsletter_heading": "Stay in the world of scent",
-        "newsletter_text": "New arrivals, limited edits, and fragrance stories delivered to your inbox.",
-        "newsletter_button_label": "Subscribe"
+        "product_link_label": "View scent"
+      }
+    },
+    "fragrance_arabian": {
+      "type": "fragrance-collection-feature",
+      "settings": {
+        "collection": "all",
+        "eyebrow": "Now available",
+        "heading": "Shop Arabian perfume",
+        "text": "Explore rich woods, amber trails, musks, spice, and statement scents with depth.",
+        "link": "shopify://collections/all",
+        "button_label": "Discover collection",
+        "fallback_vendor": "Parfum"
+      }
+    },
+    "fragrance_experience": {
+      "type": "fragrance-experience",
+      "blocks": {
+        "experience_discover": {
+          "type": "step",
+          "settings": {
+            "title": "Discover",
+            "text": "Browse by mood, notes, collection, or the moment you want the scent to own."
+          }
+        },
+        "experience_wear": {
+          "type": "step",
+          "settings": {
+            "title": "Wear",
+            "text": "Editorial product cards keep key details visible without slowing the shop."
+          }
+        },
+        "experience_gift": {
+          "type": "step",
+          "settings": {
+            "title": "Gift",
+            "text": "Collection pathways make it simple to build a thoughtful cart for someone else."
+          }
+        }
+      },
+      "block_order": [
+        "experience_discover",
+        "experience_wear",
+        "experience_gift"
+      ],
+      "settings": {
+        "eyebrow": "The scent ritual",
+        "heading": "Made for choosing, wearing, and gifting with confidence."
+      }
+    },
+    "fragrance_reviews": {
+      "type": "fragrance-reviews",
+      "blocks": {
+        "review_score": {
+          "type": "review",
+          "settings": {
+            "label": "4.9 / 5",
+            "quote": "The store feels premium and makes it easy to choose a gift without guessing.",
+            "name": "Gift shopper"
+          }
+        },
+        "review_wear": {
+          "type": "review",
+          "settings": {
+            "label": "Long-wear picks",
+            "quote": "I like that the collections separate everyday scents from deeper evening fragrances.",
+            "name": "Daily fragrance wearer"
+          }
+        },
+        "review_discovery": {
+          "type": "review",
+          "settings": {
+            "label": "Discovery first",
+            "quote": "The layout helps people browse by mood, not just by product name.",
+            "name": "New customer"
+          }
+        }
+      },
+      "block_order": [
+        "review_score",
+        "review_wear",
+        "review_discovery"
+      ],
+      "settings": {
+        "eyebrow": "Customer notes",
+        "heading": "Designed to make buying perfume feel confident."
+      }
+    },
+    "fragrance_atelier": {
+      "type": "fragrance-atelier",
+      "blocks": {
+        "step_direction": {
+          "type": "step",
+          "settings": {
+            "text": "Choose a scent direction"
+          }
+        },
+        "step_notes": {
+          "type": "step",
+          "settings": {
+            "text": "Refine notes and intensity"
+          }
+        },
+        "step_bottle": {
+          "type": "step",
+          "settings": {
+            "text": "Bottle it for daily wear or gifting"
+          }
+        }
+      },
+      "block_order": [
+        "step_direction",
+        "step_notes",
+        "step_bottle"
+      ],
+      "settings": {
+        "image": "",
+        "eyebrow": "A personal experience",
+        "heading": "Create a perfume that feels like yours",
+        "text": "Guide shoppers into a more personal fragrance moment with a clear premium callout.",
+        "button_link": "shopify://collections/all",
+        "button_label": "Start custom scent"
+      }
+    },
+    "fragrance_newsletter": {
+      "type": "fragrance-newsletter",
+      "settings": {
+        "eyebrow": "Dzire Fragrance",
+        "heading": "Stay in the world of scent",
+        "text": "New arrivals, limited edits, and fragrance stories delivered to your inbox.",
+        "placeholder": "Email address",
+        "button_label": "Subscribe",
+        "success_message": "Thank you for subscribing."
       }
     }
   },
   "order": [
-    "fragrance_home"
+    "fragrance_hero",
+    "fragrance_nav",
+    "fragrance_trust",
+    "fragrance_moods",
+    "fragrance_why",
+    "fragrance_products",
+    "fragrance_arabian",
+    "fragrance_experience",
+    "fragrance_reviews",
+    "fragrance_atelier",
+    "fragrance_newsletter"
   ]
 }

@@ -1,0 +1,110 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+<div class="fragrance-home">
+  <section class="fragrance-home__why">
+    <div class="fragrance-home__section-heading">
+      <p class="fragrance-home__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="fragrance-home__reason-grid">
+      {% for block in section.blocks %}
+        {% liquid
+          assign reason_number = forloop.index
+          if reason_number < 10
+            assign reason_number = reason_number | prepend: '0'
+          endif
+        %}
+        <article {{ block.shopify_attributes }}>
+          <span>{{ block.settings.number | default: reason_number }}</span>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Fragrance why shop",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Why shop with us"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "A refined fragrance store built for discovery."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "reason",
+      "name": "Reason",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Curated edits"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Collections are organized around scent mood, occasion, and daily wear."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance why shop",
+      "blocks": [
+        {
+          "type": "reason",
+          "settings": {
+            "number": "01",
+            "title": "Curated edits",
+            "text": "Collections are organized around scent mood, occasion, and daily wear."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "number": "02",
+            "title": "Long-wear focus",
+            "text": "Product pages give each scent room to feel premium and considered."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "number": "03",
+            "title": "Bundle friendly",
+            "text": "The layout keeps discovery sets, bundles, and gift shopping easy to scan."
+          }
+        },
+        {
+          "type": "reason",
+          "settings": {
+            "number": "04",
+            "title": "Elegant gifting",
+            "text": "A polished visual system gives every product a gift-ready presence."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

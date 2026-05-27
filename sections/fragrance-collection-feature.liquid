@@ -1,0 +1,115 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign selected_collection = section.settings.collection
+  if selected_collection == blank
+    assign selected_collection = collections.all
+  endif
+
+  assign section_link = section.settings.link
+  if section_link == blank
+    if selected_collection != blank
+      assign section_link = selected_collection.url
+    else
+      assign section_link = routes.all_products_collection_url
+    endif
+  endif
+%}
+
+<div class="fragrance-home">
+  <section class="fragrance-home__secondary">
+    <div class="fragrance-home__secondary-copy">
+      <p class="fragrance-home__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+      <a class="fragrance-home__button fragrance-home__button--dark" href="{{ section_link }}">
+        {{ section.settings.button_label }}
+      </a>
+    </div>
+
+    <div class="fragrance-home__mini-grid">
+      {% if selected_collection != blank and selected_collection.products.size > 0 %}
+        {% for product in selected_collection.products limit: 4 %}
+          <a class="fragrance-home__mini-product" href="{{ product.url }}">
+            {% if product.featured_image != blank %}
+              <img
+                src="{{ product.featured_image | image_url: width: 520 }}"
+                alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                width="{{ product.featured_image.width }}"
+                height="{{ product.featured_image.height }}"
+                loading="lazy"
+              >
+            {% else %}
+              {{ 'product-2' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+            {% endif %}
+            <span>{{ product.vendor | default: section.settings.fallback_vendor }}</span>
+            <strong>{{ product.title }}</strong>
+            <small>{{ product.price | money }}</small>
+          </a>
+        {% endfor %}
+      {% else %}
+        {% for i in (1..4) %}
+          <article class="fragrance-home__mini-product">
+            {{ 'product-2' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+            <span>{{ section.settings.fallback_vendor }}</span>
+            <strong>Discovery scent</strong>
+            <small>{{ 6499 | money }}</small>
+          </article>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Fragrance collection",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Now available"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Shop Arabian perfume"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Explore rich woods, amber trails, musks, spice, and statement scents with depth."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Discover collection"
+    },
+    {
+      "type": "text",
+      "id": "fallback_vendor",
+      "label": "Fallback vendor label",
+      "default": "Parfum"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance collection"
+    }
+  ]
+}
+{% endschema %}

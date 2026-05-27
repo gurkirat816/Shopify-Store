@@ -1,0 +1,97 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+<div class="fragrance-home">
+  <nav class="fragrance-home__nav-strip" aria-label="{{ section.settings.aria_label | escape }}">
+    {% for block in section.blocks %}
+      {% liquid
+        assign item_link = block.settings.link
+        if item_link == blank
+          assign item_link = routes.all_products_collection_url
+        endif
+      %}
+      <a href="{{ item_link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+    {% endfor %}
+  </nav>
+</div>
+
+{% schema %}
+{
+  "name": "Fragrance navigation",
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Popular fragrance categories"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "All parfums"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance navigation",
+      "blocks": [
+        {
+          "type": "link",
+          "settings": {
+            "label": "All parfums",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "New arrivals",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "For him",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "For her",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "Unisex",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "Arabian perfume",
+            "link": "shopify://collections/all"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

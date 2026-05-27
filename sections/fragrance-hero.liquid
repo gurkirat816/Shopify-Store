@@ -1,0 +1,251 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign featured_collection = section.settings.featured_collection
+  if featured_collection == blank
+    assign featured_collection = collections.all
+  endif
+
+  if featured_collection != blank and featured_collection.products.size > 0
+    assign hero_product = featured_collection.products.first
+  endif
+
+  assign hero_image = section.settings.hero_image
+
+  assign primary_link = section.settings.primary_link
+  if primary_link == blank
+    if featured_collection != blank
+      assign primary_link = featured_collection.url
+    else
+      assign primary_link = routes.all_products_collection_url
+    endif
+  endif
+
+  assign secondary_link = section.settings.secondary_link
+  if secondary_link == blank
+    assign secondary_link = primary_link
+  endif
+%}
+
+<div class="fragrance-home">
+  <section class="fragrance-home__hero" data-section-id="{{ section.id }}">
+    <div class="fragrance-home__hero-media" aria-hidden="true">
+      {% if hero_image != blank %}
+        <img
+          src="{{ hero_image | image_url: width: 1800 }}"
+          srcset="
+            {{ hero_image | image_url: width: 700 }} 700w,
+            {{ hero_image | image_url: width: 1100 }} 1100w,
+            {{ hero_image | image_url: width: 1500 }} 1500w,
+            {{ hero_image | image_url: width: 1800 }} 1800w
+          "
+          sizes="100vw"
+          alt="{{ hero_image.alt | default: section.settings.heading | escape }}"
+          width="{{ hero_image.width }}"
+          height="{{ hero_image.height }}"
+          loading="eager"
+        >
+      {% else %}
+        <img
+          src="{{ 'fragrance-hero-luxury.png' | asset_url }}"
+          alt="{{ section.settings.heading | escape }}"
+          width="1749"
+          height="899"
+          loading="eager"
+        >
+      {% endif %}
+    </div>
+    <div class="fragrance-home__hero-overlay"></div>
+
+    <div class="fragrance-home__hero-inner">
+      <div class="fragrance-home__hero-copy">
+        {% if section.settings.eyebrow != blank %}
+          <p class="fragrance-home__eyebrow fragrance-home__eyebrow--light">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        <h1>{{ section.settings.heading }}</h1>
+        {% if section.settings.subheading != blank %}
+          <p class="fragrance-home__hero-text">{{ section.settings.subheading }}</p>
+        {% endif %}
+        <div class="fragrance-home__hero-actions">
+          <a class="fragrance-home__button fragrance-home__button--light" href="{{ primary_link }}">
+            {{ section.settings.primary_label }}
+          </a>
+          <a class="fragrance-home__button fragrance-home__button--ghost" href="{{ secondary_link }}">
+            {{ section.settings.secondary_label }}
+          </a>
+        </div>
+      </div>
+
+      {% if section.settings.show_featured_product %}
+        <div class="fragrance-home__hero-feature">
+          {% if hero_product != blank %}
+            <a href="{{ hero_product.url }}" class="fragrance-home__featured-scent">
+              <span class="fragrance-home__featured-kicker">{{ section.settings.featured_product_label }}</span>
+              <div class="fragrance-home__featured-row">
+                <div class="fragrance-home__featured-image">
+                  {% if hero_product.featured_image != blank %}
+                    <img
+                      src="{{ hero_product.featured_image | image_url: width: 360 }}"
+                      alt="{{ hero_product.featured_image.alt | default: hero_product.title | escape }}"
+                      width="{{ hero_product.featured_image.width }}"
+                      height="{{ hero_product.featured_image.height }}"
+                      loading="eager"
+                    >
+                  {% else %}
+                    {{ 'product-1' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+                  {% endif %}
+                </div>
+                <div>
+                  <p>{{ hero_product.vendor | default: 'Signature parfum' }}</p>
+                  <strong>{{ hero_product.title }}</strong>
+                  <small>{{ hero_product.price | money }}</small>
+                </div>
+              </div>
+            </a>
+          {% else %}
+            <div class="fragrance-home__featured-scent">
+              <span class="fragrance-home__featured-kicker">{{ section.settings.featured_product_label }}</span>
+              <div class="fragrance-home__featured-row">
+                <div class="fragrance-home__featured-image">
+                  {{ 'product-1' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+                </div>
+                <div>
+                  <p>Signature parfum</p>
+                  <strong>Build your fragrance shelf</strong>
+                  <small>{{ 6499 | money }}</small>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="fragrance-home__hero-metrics" aria-label="Store highlights">
+        {% for block in section.blocks %}
+          <div {{ block.shopify_attributes }}>
+            <strong>{{ block.settings.value }}</strong>
+            <span>{{ block.settings.label }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Fragrance hero",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Featured collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Signature parfum collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Fragrance for every occasion"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Text",
+      "default": "Find refined scents for daily rituals, evenings, gifting, and everything between."
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop new releases"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Shop full collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_product",
+      "label": "Show featured product card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "featured_product_label",
+      "label": "Featured product label",
+      "default": "Featured scent"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "metric",
+      "name": "Metric",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Value",
+          "default": "100+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Signature scents"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance hero",
+      "blocks": [
+        {
+          "type": "metric",
+          "settings": {
+            "value": "100+",
+            "label": "Scents to explore"
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "value": "EDP",
+            "label": "Rich concentration"
+          }
+        },
+        {
+          "type": "metric",
+          "settings": {
+            "value": "Gift",
+            "label": "Ready presentation"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

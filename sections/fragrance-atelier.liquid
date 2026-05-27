@@ -1,0 +1,128 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign cta_image = section.settings.image
+
+  assign cta_link = section.settings.button_link
+  if cta_link == blank
+    assign cta_link = routes.all_products_collection_url
+  endif
+%}
+
+<div class="fragrance-home">
+  <section class="fragrance-home__atelier">
+    <div class="fragrance-home__atelier-media">
+      {% if cta_image != blank %}
+        <img
+          src="{{ cta_image | image_url: width: 1200 }}"
+          alt="{{ cta_image.alt | default: section.settings.heading | escape }}"
+          width="{{ cta_image.width }}"
+          height="{{ cta_image.height }}"
+          loading="lazy"
+        >
+      {% else %}
+        <img
+          src="{{ 'fragrance-hero-luxury.png' | asset_url }}"
+          alt="{{ section.settings.heading | escape }}"
+          width="1749"
+          height="899"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+    <div class="fragrance-home__atelier-copy">
+      <p class="fragrance-home__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.text }}</p>
+      <ol>
+        {% for block in section.blocks %}
+          <li {{ block.shopify_attributes }}>{{ block.settings.text }}</li>
+        {% endfor %}
+      </ol>
+      <a class="fragrance-home__button fragrance-home__button--light" href="{{ cta_link }}">
+        {{ section.settings.button_label }}
+      </a>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Fragrance custom perfume",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "A personal experience"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Create a perfume that feels like yours"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Guide shoppers into a more personal fragrance moment with a clear premium callout."
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Start custom scent"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Choose a scent direction"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance custom perfume",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "text": "Choose a scent direction"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "text": "Refine notes and intensity"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "text": "Bottle it for daily wear or gifting"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
