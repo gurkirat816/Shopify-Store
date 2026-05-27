@@ -50,7 +50,17 @@
         "secondary_link": "shopify://collections/all",
         "secondary_label": "Shop full collection",
         "show_featured_product": true,
-        "featured_product_label": "Featured scent"
+        "featured_product_label": "Featured scent",
+        "section_background": "#14231f",
+        "hero_text": "#fffdf8",
+        "hero_muted_text": "#e8ddd1",
+        "accent_color": "#f3d89b",
+        "primary_button_background": "#fffdf8",
+        "primary_button_text": "#11100d",
+        "primary_button_border": "#fffdf8",
+        "secondary_button_background": "#10221d",
+        "secondary_button_text": "#fffdf8",
+        "secondary_button_border": "#fffdf8"
       }
     },
     "fragrance_nav": {
@@ -108,7 +118,11 @@
         "nav_arabian"
       ],
       "settings": {
-        "aria_label": "Popular fragrance categories"
+        "aria_label": "Popular fragrance categories",
+        "nav_background": "#11100d",
+        "nav_text": "#fffdf8",
+        "nav_border": "#3a3935",
+        "nav_hover_background": "#25352f"
       }
     },
     "fragrance_trust": {
@@ -142,7 +156,12 @@
         "trust_discovery"
       ],
       "settings": {
-        "aria_label": "Shopping benefits"
+        "aria_label": "Shopping benefits",
+        "section_background": "#fffdf8",
+        "card_background": "#ffffff",
+        "card_text": "#11100d",
+        "card_muted_text": "#6d675f",
+        "card_border": "#e5ded2"
       }
     },
     "fragrance_moods": {
@@ -196,7 +215,13 @@
         "mood_evening"
       ],
       "settings": {
-        "aria_label": "Shop by mood"
+        "aria_label": "Shop by mood",
+        "section_background": "#fffdf8",
+        "card_background": "#ffffff",
+        "card_text": "#11100d",
+        "card_muted_text": "#6d675f",
+        "card_border": "#e5ded2",
+        "accent_color": "#b08a45"
       }
     },
     "fragrance_why": {
@@ -243,7 +268,13 @@
       ],
       "settings": {
         "eyebrow": "Why shop with us",
-        "heading": "A refined fragrance store built for discovery."
+        "heading": "A refined fragrance store built for discovery.",
+        "section_background": "#fffdf8",
+        "card_background": "#ffffff",
+        "card_text": "#11100d",
+        "card_muted_text": "#6d675f",
+        "card_border": "#e5ded2",
+        "accent_color": "#b08a45"
       }
     },
     "fragrance_products": {
@@ -260,7 +291,26 @@
         "second_badge": "New",
         "fallback_vendor": "Parfum",
         "default_product_note": "A polished scent profile designed for daily rituals and evening moments.",
-        "product_link_label": "View scent"
+        "product_link_label": "View scent",
+        "columns_desktop": 4,
+        "columns_tablet": 3,
+        "columns_mobile": "2",
+        "image_ratio": "1 / 1",
+        "show_numbers": true,
+        "show_vendor": true,
+        "show_description": true,
+        "show_price": true,
+        "section_background": "#fffdf8",
+        "card_background": "#ffffff",
+        "card_text": "#11100d",
+        "card_muted_text": "#6d675f",
+        "card_border": "#e5ded2",
+        "accent_color": "#b08a45",
+        "badge_background": "#11100d",
+        "badge_text": "#fffdf8",
+        "product_image_background": "#f8f2e6",
+        "product_link_background": "#11100d",
+        "product_link_text": "#fffdf8"
       }
     },
     "fragrance_arabian": {
@@ -272,7 +322,20 @@
         "text": "Explore rich woods, amber trails, musks, spice, and statement scents with depth.",
         "link": "shopify://collections/all",
         "button_label": "Discover collection",
-        "fallback_vendor": "Parfum"
+        "fallback_vendor": "Parfum",
+        "section_background": "#fffdf8",
+        "feature_background": "#14231f",
+        "feature_text": "#fffdf8",
+        "feature_muted_text": "#d8d0c4",
+        "accent_color": "#b08a45",
+        "button_background": "#11100d",
+        "button_text": "#fffdf8",
+        "button_border": "#11100d",
+        "mini_card_background": "#25352f",
+        "mini_card_border": "#41524b",
+        "mini_card_text": "#fffdf8",
+        "mini_card_muted_text": "#d8d0c4",
+        "product_image_background": "#f8f2e6"
       }
     },
     "fragrance_experience": {
@@ -307,7 +370,13 @@
       ],
       "settings": {
         "eyebrow": "The scent ritual",
-        "heading": "Made for choosing, wearing, and gifting with confidence."
+        "heading": "Made for choosing, wearing, and gifting with confidence.",
+        "section_background": "#fffdf8",
+        "card_background": "#ffffff",
+        "card_text": "#11100d",
+        "card_muted_text": "#6d675f",
+        "card_border": "#e5ded2",
+        "accent_color": "#b08a45"
       }
     },
     "fragrance_reviews": {
@@ -345,7 +414,13 @@
       ],
       "settings": {
         "eyebrow": "Customer notes",
-        "heading": "Designed to make buying perfume feel confident."
+        "heading": "Designed to make buying perfume feel confident.",
+        "section_background": "#fffdf8",
+        "card_background": "#ffffff",
+        "card_text": "#11100d",
+        "card_muted_text": "#6d675f",
+        "card_border": "#e5ded2",
+        "accent_color": "#b08a45"
       }
     },
     "fragrance_atelier": {
@@ -381,7 +456,15 @@
         "heading": "Create a perfume that feels like yours",
         "text": "Guide shoppers into a more personal fragrance moment with a clear premium callout.",
         "button_link": "shopify://collections/all",
-        "button_label": "Start custom scent"
+        "button_label": "Start custom scent",
+        "section_background": "#20362e",
+        "text_color": "#fffdf8",
+        "muted_text": "#d8d0c4",
+        "accent_color": "#f3d89b",
+        "border_color": "#53665d",
+        "button_background": "#fffdf8",
+        "button_text": "#11100d",
+        "button_border": "#fffdf8"
       }
     },
     "fragrance_newsletter": {
@@ -392,7 +475,16 @@
         "text": "New arrivals, limited edits, and fragrance stories delivered to your inbox.",
         "placeholder": "Email address",
         "button_label": "Subscribe",
-        "success_message": "Thank you for subscribing."
+        "success_message": "Thank you for subscribing.",
+        "section_background": "#11100d",
+        "text_color": "#fffdf8",
+        "muted_text": "#d8d0c4",
+        "accent_color": "#b08a45",
+        "input_background": "#fffdf8",
+        "input_text": "#11100d",
+        "input_border": "#3a3935",
+        "button_background": "#b08a45",
+        "button_text": "#fffdf8"
       }
     }
   },

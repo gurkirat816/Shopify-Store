@@ -117,6 +117,15 @@
         "text": "A refined fragrance boutique for polished daily scents, oud, musk, and gift-ready parfum edits.",
         "image": "",
         "show_default_image": true,
+        "footer_background": "#10221d",
+        "footer_text": "#fffdf8",
+        "footer_muted_text": "#cec7bb",
+        "footer_accent": "#b08a45",
+        "footer_border": "#41524b",
+        "input_background": "#fffdf8",
+        "input_text": "#12110e",
+        "button_background": "#b08a45",
+        "button_text": "#fffdf8",
         "newsletter_heading": "Join the scent list",
         "newsletter_text": "New arrivals, limited edits, and gift-ready fragrance notes.",
         "email_placeholder": "Email address",
@@ -126,7 +135,7 @@
         "help_column_heading": "Help",
         "contact_heading": "Visit",
         "social_heading": "Social",
-        "bottom_text": "© Dzire Fragrance. All rights reserved."
+        "bottom_text": "(c) Dzire Fragrance. All rights reserved."
       }
     }
   },

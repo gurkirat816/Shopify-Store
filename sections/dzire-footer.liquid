@@ -1,6 +1,19 @@
 {{ 'dzire-theme.css' | asset_url | stylesheet_tag }}
 
-<div class="dzire-shell">
+<div
+  class="dzire-shell"
+  style="
+    --dz-footer-bg: {{ section.settings.footer_background }};
+    --dz-footer-text: {{ section.settings.footer_text }};
+    --dz-footer-muted: {{ section.settings.footer_muted_text }};
+    --dz-footer-accent: {{ section.settings.footer_accent }};
+    --dz-footer-border: {{ section.settings.footer_border }};
+    --dz-footer-input-bg: {{ section.settings.input_background }};
+    --dz-footer-input-text: {{ section.settings.input_text }};
+    --dz-footer-button-bg: {{ section.settings.button_background }};
+    --dz-footer-button-text: {{ section.settings.button_text }};
+  "
+>
   <footer class="dzire-footer">
     <div class="dzire-footer__inner">
       <div class="dzire-footer__brand">
@@ -165,6 +178,64 @@
       "default": true
     },
     {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "footer_background",
+      "label": "Footer background",
+      "default": "#10221d"
+    },
+    {
+      "type": "color",
+      "id": "footer_text",
+      "label": "Footer text",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "footer_muted_text",
+      "label": "Footer muted text",
+      "default": "#cec7bb"
+    },
+    {
+      "type": "color",
+      "id": "footer_accent",
+      "label": "Footer accent",
+      "default": "#b08a45"
+    },
+    {
+      "type": "color",
+      "id": "footer_border",
+      "label": "Footer border",
+      "default": "#41524b"
+    },
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Email input background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "input_text",
+      "label": "Email input text",
+      "default": "#12110e"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Newsletter button background",
+      "default": "#b08a45"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Newsletter button text",
+      "default": "#fffdf8"
+    },
+    {
       "type": "text",
       "id": "newsletter_heading",
       "label": "Newsletter heading",
@@ -222,7 +293,7 @@
       "type": "text",
       "id": "bottom_text",
       "label": "Bottom text",
-      "default": "© Dzire Fragrance. All rights reserved."
+      "default": "(c) Dzire Fragrance. All rights reserved."
     }
   ],
   "blocks": [

@@ -1,6 +1,16 @@
 {{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
 
-<div class="fragrance-home">
+<div
+  class="fragrance-home"
+  style="
+    --fh-section-bg: {{ section.settings.section_background }};
+    --fh-card-bg: {{ section.settings.card_background }};
+    --fh-card-text: {{ section.settings.card_text }};
+    --fh-card-muted: {{ section.settings.card_muted_text }};
+    --fh-card-border: {{ section.settings.card_border }};
+    --fh-accent: {{ section.settings.accent_color }};
+  "
+>
   <section class="fragrance-home__why">
     <div class="fragrance-home__section-heading">
       <p class="fragrance-home__eyebrow">{{ section.settings.eyebrow }}</p>
@@ -39,6 +49,46 @@
       "id": "heading",
       "label": "Heading",
       "default": "A refined fragrance store built for discovery."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text",
+      "label": "Card text",
+      "default": "#11100d"
+    },
+    {
+      "type": "color",
+      "id": "card_muted_text",
+      "label": "Card muted text",
+      "default": "#6d675f"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "Card border",
+      "default": "#e5ded2"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent text",
+      "default": "#b08a45"
     }
   ],
   "blocks": [

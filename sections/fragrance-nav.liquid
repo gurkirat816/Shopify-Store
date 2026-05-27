@@ -1,6 +1,14 @@
 {{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
 
-<div class="fragrance-home">
+<div
+  class="fragrance-home"
+  style="
+    --fh-nav-bg: {{ section.settings.nav_background }};
+    --fh-nav-text: {{ section.settings.nav_text }};
+    --fh-nav-border: {{ section.settings.nav_border }};
+    --fh-nav-hover-bg: {{ section.settings.nav_hover_background }};
+  "
+>
   <nav class="fragrance-home__nav-strip" aria-label="{{ section.settings.aria_label | escape }}">
     {% for block in section.blocks %}
       {% liquid
@@ -23,6 +31,34 @@
       "id": "aria_label",
       "label": "Accessibility label",
       "default": "Popular fragrance categories"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "nav_background",
+      "label": "Navigation background",
+      "default": "#11100d"
+    },
+    {
+      "type": "color",
+      "id": "nav_text",
+      "label": "Navigation text",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "nav_border",
+      "label": "Navigation border",
+      "default": "#3a3935"
+    },
+    {
+      "type": "color",
+      "id": "nav_hover_background",
+      "label": "Navigation hover background",
+      "default": "#25352f"
     }
   ],
   "blocks": [

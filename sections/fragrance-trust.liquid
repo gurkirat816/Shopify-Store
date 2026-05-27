@@ -1,6 +1,15 @@
 {{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
 
-<div class="fragrance-home">
+<div
+  class="fragrance-home"
+  style="
+    --fh-section-bg: {{ section.settings.section_background }};
+    --fh-card-bg: {{ section.settings.card_background }};
+    --fh-card-text: {{ section.settings.card_text }};
+    --fh-card-muted: {{ section.settings.card_muted_text }};
+    --fh-card-border: {{ section.settings.card_border }};
+  "
+>
   <div class="fragrance-home__trust-row" aria-label="{{ section.settings.aria_label | escape }}">
     {% for block in section.blocks %}
       <div {{ block.shopify_attributes }}>
@@ -20,6 +29,40 @@
       "id": "aria_label",
       "label": "Accessibility label",
       "default": "Shopping benefits"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text",
+      "label": "Card text",
+      "default": "#11100d"
+    },
+    {
+      "type": "color",
+      "id": "card_muted_text",
+      "label": "Card muted text",
+      "default": "#6d675f"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "Card border",
+      "default": "#e5ded2"
     }
   ],
   "blocks": [

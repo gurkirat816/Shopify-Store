@@ -27,7 +27,23 @@
   endif
 %}
 
-<div class="fragrance-home">
+<div
+  class="fragrance-home"
+  style="
+    --fh-section-bg: {{ section.settings.section_background }};
+    --fh-hero-bg: {{ section.settings.section_background }};
+    --fh-hero-heading: {{ section.settings.hero_text }};
+    --fh-hero-text: {{ section.settings.hero_text }};
+    --fh-hero-muted: {{ section.settings.hero_muted_text }};
+    --fh-hero-accent: {{ section.settings.accent_color }};
+    --fh-button-light-bg: {{ section.settings.primary_button_background }};
+    --fh-button-light-text: {{ section.settings.primary_button_text }};
+    --fh-button-light-border: {{ section.settings.primary_button_border }};
+    --fh-button-ghost-bg: {{ section.settings.secondary_button_background }};
+    --fh-button-ghost-text: {{ section.settings.secondary_button_text }};
+    --fh-button-ghost-border: {{ section.settings.secondary_button_border }};
+  "
+>
   <section class="fragrance-home__hero" data-section-id="{{ section.id }}">
     <div class="fragrance-home__hero-media" aria-hidden="true">
       {% if hero_image != blank %}
@@ -197,6 +213,70 @@
       "id": "featured_product_label",
       "label": "Featured product label",
       "default": "Featured scent"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Hero background",
+      "default": "#14231f"
+    },
+    {
+      "type": "color",
+      "id": "hero_text",
+      "label": "Hero text",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "hero_muted_text",
+      "label": "Hero muted text",
+      "default": "#e8ddd1"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Hero accent",
+      "default": "#f3d89b"
+    },
+    {
+      "type": "color",
+      "id": "primary_button_background",
+      "label": "Primary button background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "primary_button_text",
+      "label": "Primary button text",
+      "default": "#11100d"
+    },
+    {
+      "type": "color",
+      "id": "primary_button_border",
+      "label": "Primary button border",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_background",
+      "label": "Secondary button background",
+      "default": "#10221d"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_text",
+      "label": "Secondary button text",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "secondary_button_border",
+      "label": "Secondary button border",
+      "default": "#fffdf8"
     }
   ],
   "blocks": [

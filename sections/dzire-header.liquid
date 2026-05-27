@@ -9,7 +9,33 @@
   assign announcement_link = section.settings.announcement_link
 %}
 
-<div class="dzire-shell">
+{% if section.settings.sticky_header %}
+  <style>
+    #shopify-section-{{ section.id }} {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+  </style>
+{% endif %}
+
+<div
+  class="dzire-shell"
+  style="
+    --dz-header-bg: {{ section.settings.header_background }};
+    --dz-header-text: {{ section.settings.header_text }};
+    --dz-header-muted: {{ section.settings.header_muted_text }};
+    --dz-header-border: {{ section.settings.header_border }};
+    --dz-announcement-bg: {{ section.settings.announcement_background }};
+    --dz-announcement-text: {{ section.settings.announcement_text_color }};
+    --dz-header-link-hover: {{ section.settings.link_hover_background }};
+    --dz-header-button-bg: {{ section.settings.button_background }};
+    --dz-header-button-text: {{ section.settings.button_text }};
+    --dz-header-button-border: {{ section.settings.button_border }};
+    --dz-cart-badge-bg: {{ section.settings.cart_badge_background }};
+    --dz-cart-badge-text: {{ section.settings.cart_badge_text }};
+  "
+>
   <header class="dzire-header{% if section.settings.sticky_header %} dzire-header--sticky{% endif %}">
     {% if section.settings.announcement_text != blank %}
       <div class="dzire-header__announcement">
@@ -121,6 +147,82 @@
       "id": "sticky_header",
       "label": "Sticky header",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "header_background",
+      "label": "Header background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "header_text",
+      "label": "Header text",
+      "default": "#12110e"
+    },
+    {
+      "type": "color",
+      "id": "header_muted_text",
+      "label": "Header muted text",
+      "default": "#6d675f"
+    },
+    {
+      "type": "color",
+      "id": "header_border",
+      "label": "Header border",
+      "default": "#e7dfd2"
+    },
+    {
+      "type": "color",
+      "id": "announcement_background",
+      "label": "Announcement background",
+      "default": "#10221d"
+    },
+    {
+      "type": "color",
+      "id": "announcement_text_color",
+      "label": "Announcement text",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_background",
+      "label": "Menu hover background",
+      "default": "#f8f2e6"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Icon button background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Icon button text",
+      "default": "#12110e"
+    },
+    {
+      "type": "color",
+      "id": "button_border",
+      "label": "Icon button border",
+      "default": "#e7dfd2"
+    },
+    {
+      "type": "color",
+      "id": "cart_badge_background",
+      "label": "Cart badge background",
+      "default": "#10221d"
+    },
+    {
+      "type": "color",
+      "id": "cart_badge_text",
+      "label": "Cart badge text",
+      "default": "#fffdf8"
     },
     {
       "type": "text",

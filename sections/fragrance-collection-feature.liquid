@@ -16,7 +16,24 @@
   endif
 %}
 
-<div class="fragrance-home">
+<div
+  class="fragrance-home"
+  style="
+    --fh-section-bg: {{ section.settings.section_background }};
+    --fh-secondary-bg: {{ section.settings.feature_background }};
+    --fh-secondary-text: {{ section.settings.feature_text }};
+    --fh-secondary-muted: {{ section.settings.feature_muted_text }};
+    --fh-accent: {{ section.settings.accent_color }};
+    --fh-button-dark-bg: {{ section.settings.button_background }};
+    --fh-button-dark-text: {{ section.settings.button_text }};
+    --fh-button-dark-border: {{ section.settings.button_border }};
+    --fh-mini-card-bg: {{ section.settings.mini_card_background }};
+    --fh-mini-card-border: {{ section.settings.mini_card_border }};
+    --fh-mini-card-text: {{ section.settings.mini_card_text }};
+    --fh-mini-card-muted: {{ section.settings.mini_card_muted_text }};
+    --fh-product-image-bg: {{ section.settings.product_image_background }};
+  "
+>
   <section class="fragrance-home__secondary">
     <div class="fragrance-home__secondary-copy">
       <p class="fragrance-home__eyebrow">{{ section.settings.eyebrow }}</p>
@@ -104,6 +121,88 @@
       "id": "fallback_vendor",
       "label": "Fallback vendor label",
       "default": "Parfum"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "feature_background",
+      "label": "Feature background",
+      "default": "#14231f"
+    },
+    {
+      "type": "color",
+      "id": "feature_text",
+      "label": "Feature text",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "feature_muted_text",
+      "label": "Feature muted text",
+      "default": "#d8d0c4"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent text",
+      "default": "#b08a45"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#11100d"
+    },
+    {
+      "type": "color",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "button_border",
+      "label": "Button border",
+      "default": "#11100d"
+    },
+    {
+      "type": "color",
+      "id": "mini_card_background",
+      "label": "Product card background",
+      "default": "#25352f"
+    },
+    {
+      "type": "color",
+      "id": "mini_card_border",
+      "label": "Product card border",
+      "default": "#41524b"
+    },
+    {
+      "type": "color",
+      "id": "mini_card_text",
+      "label": "Product card text",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "mini_card_muted_text",
+      "label": "Product card muted text",
+      "default": "#d8d0c4"
+    },
+    {
+      "type": "color",
+      "id": "product_image_background",
+      "label": "Product image background",
+      "default": "#f8f2e6"
     }
   ],
   "presets": [

@@ -14,9 +14,36 @@
       assign collection_link = routes.all_products_collection_url
     endif
   endif
+
+  assign has_product_blocks = false
+  for block in section.blocks
+    if block.type == 'product' and block.settings.product != blank
+      assign has_product_blocks = true
+      break
+    endif
+  endfor
 %}
 
-<div class="fragrance-home">
+<div
+  class="fragrance-home"
+  style="
+    --fh-section-bg: {{ section.settings.section_background }};
+    --fh-card-bg: {{ section.settings.card_background }};
+    --fh-card-text: {{ section.settings.card_text }};
+    --fh-card-muted: {{ section.settings.card_muted_text }};
+    --fh-card-border: {{ section.settings.card_border }};
+    --fh-accent: {{ section.settings.accent_color }};
+    --fh-badge-bg: {{ section.settings.badge_background }};
+    --fh-badge-text: {{ section.settings.badge_text }};
+    --fh-product-image-bg: {{ section.settings.product_image_background }};
+    --fh-product-link-bg: {{ section.settings.product_link_background }};
+    --fh-product-link-text: {{ section.settings.product_link_text }};
+    --fh-grid-columns: {{ section.settings.columns_desktop }};
+    --fh-tablet-columns: {{ section.settings.columns_tablet }};
+    --fh-mobile-columns: {{ section.settings.columns_mobile }};
+    --fh-product-image-ratio: {{ section.settings.image_ratio }};
+  "
+>
   <section class="fragrance-home__collection">
     <div class="fragrance-home__collection-heading">
       <div>
@@ -27,7 +54,61 @@
     </div>
 
     <div class="fragrance-home__product-grid">
-      {% if featured_collection != blank and featured_collection.products.size > 0 %}
+      {% if has_product_blocks %}
+        {% for block in section.blocks %}
+          {% if block.type == 'product' and block.settings.product != blank %}
+            {% liquid
+              assign product = block.settings.product
+              assign product_number = forloop.index
+              if product_number < 10
+                assign product_number = product_number | prepend: '0'
+              endif
+              assign product_description = product.description | strip_html | truncate: 86
+              if block.settings.description != blank
+                assign product_description = block.settings.description
+              elsif product_description == blank
+                assign product_description = section.settings.default_product_note
+              endif
+            %}
+            <a class="fragrance-home__product-card" href="{{ product.url }}" {{ block.shopify_attributes }}>
+              {% if section.settings.show_numbers %}
+                <span class="fragrance-home__product-number">{{ product_number }}</span>
+              {% endif %}
+              {% if block.settings.badge != blank %}
+                <span class="fragrance-home__product-badge">{{ block.settings.badge }}</span>
+              {% endif %}
+              <div class="fragrance-home__product-media">
+                {% if product.featured_image != blank %}
+                  <img
+                    src="{{ product.featured_image | image_url: width: 620 }}"
+                    alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                    width="{{ product.featured_image.width }}"
+                    height="{{ product.featured_image.height }}"
+                    loading="lazy"
+                  >
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+                {% endif %}
+              </div>
+              <div class="fragrance-home__product-copy">
+                {% if section.settings.show_vendor %}
+                  <p>{{ product.vendor | default: section.settings.fallback_vendor }}</p>
+                {% endif %}
+                <h3>{{ block.settings.title | default: product.title }}</h3>
+                {% if section.settings.show_description %}
+                  <span>{{ product_description }}</span>
+                {% endif %}
+                <div class="fragrance-home__product-footer">
+                  {% if section.settings.show_price %}
+                    <strong>{{ product.price | money }}</strong>
+                  {% endif %}
+                  <em>{{ section.settings.product_link_label }}</em>
+                </div>
+              </div>
+            </a>
+          {% endif %}
+        {% endfor %}
+      {% elsif featured_collection != blank and featured_collection.products.size > 0 %}
         {% for product in featured_collection.products limit: section.settings.product_limit %}
           {% liquid
             assign product_number = forloop.index
@@ -40,7 +121,9 @@
             endif
           %}
           <a class="fragrance-home__product-card" href="{{ product.url }}">
-            <span class="fragrance-home__product-number">{{ product_number }}</span>
+            {% if section.settings.show_numbers %}
+              <span class="fragrance-home__product-number">{{ product_number }}</span>
+            {% endif %}
             {% if section.settings.show_badges %}
               {% if forloop.index == 1 %}
                 <span class="fragrance-home__product-badge">{{ section.settings.first_badge }}</span>
@@ -51,7 +134,7 @@
             <div class="fragrance-home__product-media">
               {% if product.featured_image != blank %}
                 <img
-                  src="{{ product.featured_image | image_url: width: 720 }}"
+                  src="{{ product.featured_image | image_url: width: 620 }}"
                   alt="{{ product.featured_image.alt | default: product.title | escape }}"
                   width="{{ product.featured_image.width }}"
                   height="{{ product.featured_image.height }}"
@@ -62,11 +145,17 @@
               {% endif %}
             </div>
             <div class="fragrance-home__product-copy">
-              <p>{{ product.vendor | default: section.settings.fallback_vendor }}</p>
+              {% if section.settings.show_vendor %}
+                <p>{{ product.vendor | default: section.settings.fallback_vendor }}</p>
+              {% endif %}
               <h3>{{ product.title }}</h3>
-              <span>{{ product_description }}</span>
+              {% if section.settings.show_description %}
+                <span>{{ product_description }}</span>
+              {% endif %}
               <div class="fragrance-home__product-footer">
-                <strong>{{ product.price | money }}</strong>
+                {% if section.settings.show_price %}
+                  <strong>{{ product.price | money }}</strong>
+                {% endif %}
                 <em>{{ section.settings.product_link_label }}</em>
               </div>
             </div>
@@ -81,16 +170,24 @@
             endif
           %}
           <article class="fragrance-home__product-card">
-            <span class="fragrance-home__product-number">{{ placeholder_number }}</span>
+            {% if section.settings.show_numbers %}
+              <span class="fragrance-home__product-number">{{ placeholder_number }}</span>
+            {% endif %}
             <div class="fragrance-home__product-media">
               {{ 'product-1' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
             </div>
             <div class="fragrance-home__product-copy">
-              <p>{{ section.settings.fallback_vendor }}</p>
+              {% if section.settings.show_vendor %}
+                <p>{{ section.settings.fallback_vendor }}</p>
+              {% endif %}
               <h3>Signature scent</h3>
-              <span>{{ section.settings.default_product_note }}</span>
+              {% if section.settings.show_description %}
+                <span>{{ section.settings.default_product_note }}</span>
+              {% endif %}
               <div class="fragrance-home__product-footer">
-                <strong>{{ 6499 | money }}</strong>
+                {% if section.settings.show_price %}
+                  <strong>{{ 6499 | money }}</strong>
+                {% endif %}
                 <em>{{ section.settings.product_link_label }}</em>
               </div>
             </div>
@@ -143,6 +240,84 @@
       "default": 6
     },
     {
+      "type": "range",
+      "id": "columns_desktop",
+      "label": "Desktop columns",
+      "min": 3,
+      "max": 5,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns_tablet",
+      "label": "Tablet columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Mobile columns",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square"
+        },
+        {
+          "value": "4 / 5",
+          "label": "Portrait"
+        },
+        {
+          "value": "3 / 4",
+          "label": "Tall"
+        }
+      ],
+      "default": "1 / 1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_numbers",
+      "label": "Show product numbers",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show vendor",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show description",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_price",
+      "label": "Show price",
+      "default": true
+    },
+    {
       "type": "checkbox",
       "id": "show_badges",
       "label": "Show first two product badges",
@@ -177,6 +352,104 @@
       "id": "product_link_label",
       "label": "Product link label",
       "default": "View scent"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "label": "Section background",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "card_text",
+      "label": "Card text",
+      "default": "#11100d"
+    },
+    {
+      "type": "color",
+      "id": "card_muted_text",
+      "label": "Card muted text",
+      "default": "#6d675f"
+    },
+    {
+      "type": "color",
+      "id": "card_border",
+      "label": "Card border",
+      "default": "#e5ded2"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Accent color",
+      "default": "#b08a45"
+    },
+    {
+      "type": "color",
+      "id": "badge_background",
+      "label": "Badge background",
+      "default": "#11100d"
+    },
+    {
+      "type": "color",
+      "id": "badge_text",
+      "label": "Badge text",
+      "default": "#fffdf8"
+    },
+    {
+      "type": "color",
+      "id": "product_image_background",
+      "label": "Product image background",
+      "default": "#f8f2e6"
+    },
+    {
+      "type": "color",
+      "id": "product_link_background",
+      "label": "Product link background",
+      "default": "#11100d"
+    },
+    {
+      "type": "color",
+      "id": "product_link_text",
+      "label": "Product link text",
+      "default": "#fffdf8"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Manual product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Custom description"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge"
+        }
+      ]
     }
   ],
   "presets": [

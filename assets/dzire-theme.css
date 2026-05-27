@@ -17,10 +17,11 @@
 }
 
 .dzire-header {
-  background: var(--dz-paper);
-  border-bottom: 1px solid var(--dz-line);
+  background: var(--dz-header-bg, var(--dz-paper));
+  border-bottom: 1px solid var(--dz-header-border, var(--dz-line));
+  color: var(--dz-header-text, var(--dz-ink));
   position: relative;
-  z-index: 30;
+  z-index: 1000;
 }
 
 .dzire-header--sticky {
@@ -29,8 +30,8 @@
 }
 
 .dzire-header__announcement {
-  background: var(--dz-forest);
-  color: var(--dz-paper);
+  background: var(--dz-announcement-bg, var(--dz-forest));
+  color: var(--dz-announcement-text, var(--dz-paper));
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1.35;
@@ -39,7 +40,7 @@
 }
 
 .dzire-header__announcement a {
-  color: var(--dz-paper);
+  color: var(--dz-announcement-text, var(--dz-paper));
 }
 
 .dzire-header__bar {
@@ -81,7 +82,7 @@
 }
 
 .dzire-header__tagline {
-  color: var(--dz-muted);
+  color: var(--dz-header-muted, var(--dz-muted));
   font-size: 0.68rem;
   font-weight: 800;
   margin-top: 4px;
@@ -105,7 +106,7 @@
 }
 
 .dzire-header__nav a:hover {
-  background: var(--dz-cream);
+  background: var(--dz-header-link-hover, var(--dz-cream));
 }
 
 .dzire-header__actions {
@@ -118,10 +119,10 @@
 .dzire-header__icon-link,
 .dzire-header__menu-button {
   align-items: center;
-  background: transparent;
-  border: 1px solid var(--dz-line);
+  background: var(--dz-header-button-bg, transparent);
+  border: 1px solid var(--dz-header-button-border, var(--dz-line));
   border-radius: 4px;
-  color: var(--dz-ink);
+  color: var(--dz-header-button-text, var(--dz-ink));
   display: inline-flex;
   font-size: 0.82rem;
   font-weight: 800;
@@ -139,9 +140,9 @@
 }
 
 .dzire-header__cart-count {
-  background: var(--dz-forest);
+  background: var(--dz-cart-badge-bg, var(--dz-forest));
   border-radius: 999px;
-  color: var(--dz-paper);
+  color: var(--dz-cart-badge-text, var(--dz-paper));
   display: inline-grid;
   font-size: 0.68rem;
   font-weight: 800;
@@ -164,8 +165,8 @@
 }
 
 .dzire-header__mobile-panel {
-  background: var(--dz-paper);
-  border-top: 1px solid var(--dz-line);
+  background: var(--dz-header-bg, var(--dz-paper));
+  border-top: 1px solid var(--dz-header-border, var(--dz-line));
   box-shadow: 0 20px 40px rgb(18 17 14 / 12%);
   display: grid;
   gap: 8px;
@@ -177,7 +178,7 @@
 }
 
 .dzire-header__mobile-panel a {
-  border: 1px solid var(--dz-line);
+  border: 1px solid var(--dz-header-border, var(--dz-line));
   border-radius: 4px;
   font-size: 0.92rem;
   font-weight: 800;
@@ -185,8 +186,8 @@
 }
 
 .dzire-footer {
-  background: var(--dz-forest);
-  color: var(--dz-paper);
+  background: var(--dz-footer-bg, var(--dz-forest));
+  color: var(--dz-footer-text, var(--dz-paper));
 }
 
 .dzire-footer__inner {
@@ -204,7 +205,7 @@
 }
 
 .dzire-footer__brand h2 {
-  color: var(--dz-paper);
+  color: var(--dz-footer-text, var(--dz-paper));
   font-family: var(--font-heading--family);
   font-size: 1.85rem;
   line-height: 1.12;
@@ -213,7 +214,7 @@
 }
 
 .dzire-footer__brand p {
-  color: rgb(255 253 248 / 72%);
+  color: var(--dz-footer-muted, rgb(255 253 248 / 72%));
   font-size: 0.92rem;
   line-height: 1.6;
   margin: 0;
@@ -234,20 +235,20 @@
 }
 
 .dzire-footer__newsletter {
-  border: 1px solid rgb(255 253 248 / 16%);
+  border: 1px solid var(--dz-footer-border, rgb(255 253 248 / 16%));
   border-radius: 8px;
   padding: 18px;
 }
 
 .dzire-footer__newsletter strong {
-  color: var(--dz-paper);
+  color: var(--dz-footer-text, var(--dz-paper));
   display: block;
   font-size: 0.98rem;
   margin-bottom: 8px;
 }
 
 .dzire-footer__newsletter span {
-  color: rgb(255 253 248 / 68%);
+  color: var(--dz-footer-muted, rgb(255 253 248 / 68%));
   display: block;
   font-size: 0.84rem;
   line-height: 1.45;
@@ -261,10 +262,10 @@
 }
 
 .dzire-footer__form input {
-  background: var(--dz-paper);
+  background: var(--dz-footer-input-bg, var(--dz-paper));
   border: 0;
   border-radius: 4px;
-  color: var(--dz-ink);
+  color: var(--dz-footer-input-text, var(--dz-ink));
   font-size: 0.9rem;
   min-height: 44px;
   min-width: 0;
@@ -272,10 +273,10 @@
 }
 
 .dzire-footer__form button {
-  background: var(--dz-gold);
+  background: var(--dz-footer-button-bg, var(--dz-gold));
   border: 0;
   border-radius: 4px;
-  color: var(--dz-paper);
+  color: var(--dz-footer-button-text, var(--dz-paper));
   cursor: pointer;
   font: inherit;
   font-size: 0.86rem;
@@ -296,14 +297,14 @@
 }
 
 .dzire-footer__column {
-  border-left: 1px solid rgb(255 253 248 / 14%);
+  border-left: 1px solid var(--dz-footer-border, rgb(255 253 248 / 14%));
   padding-left: 18px;
 }
 
 .dzire-footer__column h3,
 .dzire-footer__social h3,
 .dzire-footer__contact h3 {
-  color: var(--dz-gold);
+  color: var(--dz-footer-accent, var(--dz-gold));
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0;
@@ -314,7 +315,7 @@
 .dzire-footer__column a,
 .dzire-footer__contact p,
 .dzire-footer__social a {
-  color: rgb(255 253 248 / 78%);
+  color: var(--dz-footer-muted, rgb(255 253 248 / 78%));
   display: block;
   font-size: 0.88rem;
   line-height: 1.45;
@@ -323,13 +324,13 @@
 
 .dzire-footer__column a:hover,
 .dzire-footer__social a:hover {
-  color: var(--dz-paper);
+  color: var(--dz-footer-text, var(--dz-paper));
 }
 
 .dzire-footer__bottom {
   align-items: center;
-  border-top: 1px solid rgb(255 253 248 / 14%);
-  color: rgb(255 253 248 / 64%);
+  border-top: 1px solid var(--dz-footer-border, rgb(255 253 248 / 14%));
+  color: var(--dz-footer-muted, rgb(255 253 248 / 64%));
   display: flex;
   font-size: 0.78rem;
   gap: 16px;
@@ -370,7 +371,7 @@
 
   .dzire-footer__column {
     border-left: 0;
-    border-top: 1px solid rgb(255 253 248 / 14%);
+    border-top: 1px solid var(--dz-footer-border, rgb(255 253 248 / 14%));
     padding-left: 0;
     padding-top: 18px;
   }
