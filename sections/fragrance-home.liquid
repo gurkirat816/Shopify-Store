@@ -1,0 +1,839 @@
+{{ 'fragrance-home.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign featured_collection = section.settings.featured_collection
+  if featured_collection == blank
+    assign featured_collection = collections.all
+  endif
+
+  assign secondary_collection = section.settings.secondary_collection
+  if secondary_collection == blank
+    assign secondary_collection = featured_collection
+  endif
+
+  if featured_collection != blank and featured_collection.products.size > 0
+    assign hero_product = featured_collection.products.first
+  endif
+
+  assign hero_image = section.settings.hero_image
+
+  assign cta_image = section.settings.cta_image
+  if cta_image == blank and hero_product != blank
+    assign cta_image = hero_product.featured_image
+  endif
+
+  assign primary_link = section.settings.primary_link
+  if primary_link == blank
+    if featured_collection != blank
+      assign primary_link = featured_collection.url
+    else
+      assign primary_link = routes.all_products_collection_url
+    endif
+  endif
+
+  assign secondary_link = section.settings.secondary_link
+  if secondary_link == blank
+    if secondary_collection != blank
+      assign secondary_link = secondary_collection.url
+    else
+      assign secondary_link = routes.all_products_collection_url
+    endif
+  endif
+
+  assign custom_link = section.settings.custom_link
+  if custom_link == blank
+    assign custom_link = primary_link
+  endif
+
+  assign nav_new_collection = collections['new-arrivals']
+  assign nav_men_collection = collections.men
+  assign nav_women_collection = collections.women
+  assign nav_unisex_collection = collections.unisex
+  assign nav_arabian_collection = collections['arabian-perfume']
+
+  assign nav_new_link = primary_link
+  if nav_new_collection != blank
+    assign nav_new_link = nav_new_collection.url
+  endif
+
+  assign nav_men_link = primary_link
+  if nav_men_collection != blank
+    assign nav_men_link = nav_men_collection.url
+  endif
+
+  assign nav_women_link = primary_link
+  if nav_women_collection != blank
+    assign nav_women_link = nav_women_collection.url
+  endif
+
+  assign nav_unisex_link = primary_link
+  if nav_unisex_collection != blank
+    assign nav_unisex_link = nav_unisex_collection.url
+  endif
+
+  assign nav_arabian_link = secondary_link
+  if nav_arabian_collection != blank
+    assign nav_arabian_link = nav_arabian_collection.url
+  endif
+%}
+
+<section class="fragrance-home" data-section-id="{{ section.id }}">
+  <div class="fragrance-home__hero">
+    <div class="fragrance-home__hero-media" aria-hidden="true">
+      {% if hero_image != blank %}
+        <img
+          src="{{ hero_image | image_url: width: 1800 }}"
+          srcset="
+            {{ hero_image | image_url: width: 700 }} 700w,
+            {{ hero_image | image_url: width: 1100 }} 1100w,
+            {{ hero_image | image_url: width: 1500 }} 1500w,
+            {{ hero_image | image_url: width: 1800 }} 1800w
+          "
+          sizes="100vw"
+          alt="{{ hero_image.alt | default: section.settings.heading | escape }}"
+          width="{{ hero_image.width }}"
+          height="{{ hero_image.height }}"
+          loading="eager"
+        >
+      {% else %}
+        <img
+          src="{{ 'fragrance-hero-luxury.png' | asset_url }}"
+          alt="{{ section.settings.heading | escape }}"
+          width="1749"
+          height="899"
+          loading="eager"
+        >
+      {% endif %}
+    </div>
+    <div class="fragrance-home__hero-overlay"></div>
+
+    <div class="fragrance-home__hero-inner">
+      <div class="fragrance-home__hero-copy">
+        {% if section.settings.eyebrow != blank %}
+          <p class="fragrance-home__eyebrow fragrance-home__eyebrow--light">{{ section.settings.eyebrow }}</p>
+        {% endif %}
+        <h1>{{ section.settings.heading }}</h1>
+        {% if section.settings.subheading != blank %}
+          <p class="fragrance-home__hero-text">{{ section.settings.subheading }}</p>
+        {% endif %}
+        <div class="fragrance-home__hero-actions">
+          <a class="fragrance-home__button fragrance-home__button--light" href="{{ primary_link }}">
+            {{ section.settings.primary_label }}
+          </a>
+          <a class="fragrance-home__button fragrance-home__button--ghost" href="{{ secondary_link }}">
+            {{ section.settings.secondary_label }}
+          </a>
+        </div>
+      </div>
+
+      <div class="fragrance-home__hero-feature">
+        {% if hero_product != blank %}
+          <a href="{{ hero_product.url }}" class="fragrance-home__featured-scent">
+            <span class="fragrance-home__featured-kicker">Featured scent</span>
+            <div class="fragrance-home__featured-row">
+              <div class="fragrance-home__featured-image">
+                {% if hero_product.featured_image != blank %}
+                  <img
+                    src="{{ hero_product.featured_image | image_url: width: 360 }}"
+                    alt="{{ hero_product.featured_image.alt | default: hero_product.title | escape }}"
+                    width="{{ hero_product.featured_image.width }}"
+                    height="{{ hero_product.featured_image.height }}"
+                    loading="eager"
+                  >
+                {% else %}
+                  {{ 'product-1' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+                {% endif %}
+              </div>
+              <div>
+                <p>{{ hero_product.vendor | default: 'Signature parfum' }}</p>
+                <strong>{{ hero_product.title }}</strong>
+                <small>{{ hero_product.price | money }}</small>
+              </div>
+            </div>
+          </a>
+        {% else %}
+          <div class="fragrance-home__featured-scent">
+            <span class="fragrance-home__featured-kicker">Featured scent</span>
+            <div class="fragrance-home__featured-row">
+              <div class="fragrance-home__featured-image">
+                {{ 'product-1' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+              </div>
+              <div>
+                <p>Signature parfum</p>
+                <strong>Build your fragrance shelf</strong>
+                <small>{{ 6499 | money }}</small>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="fragrance-home__hero-metrics" aria-label="Store highlights">
+        <div>
+          <strong>
+            {% if shop.products_count > 0 %}
+              {{ shop.products_count }}+
+            {% else %}
+              Curated
+            {% endif %}
+          </strong>
+          <span>{{ section.settings.metric_one_label }}</span>
+        </div>
+        <div>
+          <strong>{{ section.settings.metric_two_value }}</strong>
+          <span>{{ section.settings.metric_two_label }}</span>
+        </div>
+        <div>
+          <strong>{{ section.settings.metric_three_value }}</strong>
+          <span>{{ section.settings.metric_three_label }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fragrance-home__nav-strip" aria-label="Popular fragrance categories">
+    <a href="{{ primary_link }}">All parfums</a>
+    <a href="{{ nav_new_link }}">New arrivals</a>
+    <a href="{{ nav_men_link }}">For him</a>
+    <a href="{{ nav_women_link }}">For her</a>
+    <a href="{{ nav_unisex_link }}">Unisex</a>
+    <a href="{{ nav_arabian_link }}">Arabian perfume</a>
+  </div>
+
+  <div class="fragrance-home__trust-row" aria-label="Shopping benefits">
+    <div>
+      <strong>Authentic selection</strong>
+      <span>Curated parfum, oud, musk, and daily-wear scents.</span>
+    </div>
+    <div>
+      <strong>Gift-ready presentation</strong>
+      <span>Elegant shopping paths for birthdays, events, and self-gifting.</span>
+    </div>
+    <div>
+      <strong>Easy discovery</strong>
+      <span>Shop by mood, concentration, occasion, and scent family.</span>
+    </div>
+  </div>
+
+  <section class="fragrance-home__moods" aria-label="Shop by mood">
+    <a href="{{ nav_new_link }}" class="fragrance-home__mood-card fragrance-home__mood-card--fresh">
+      <span>Fresh</span>
+      <strong>Clean daily signatures</strong>
+      <small>Bright citrus, airy musk, soft florals</small>
+    </a>
+    <a href="{{ nav_women_link }}" class="fragrance-home__mood-card fragrance-home__mood-card--floral">
+      <span>Floral</span>
+      <strong>Romantic and polished</strong>
+      <small>Rose, jasmine, powder, amber</small>
+    </a>
+    <a href="{{ nav_arabian_link }}" class="fragrance-home__mood-card fragrance-home__mood-card--oud">
+      <span>Oud</span>
+      <strong>Warm statement trails</strong>
+      <small>Woods, spice, resin, smoke</small>
+    </a>
+    <a href="{{ nav_unisex_link }}" class="fragrance-home__mood-card fragrance-home__mood-card--night">
+      <span>Evening</span>
+      <strong>Deep after-dark scents</strong>
+      <small>Vanilla, leather, amber, musk</small>
+    </a>
+  </section>
+
+  <section class="fragrance-home__why">
+    <div class="fragrance-home__section-heading">
+      <p class="fragrance-home__eyebrow">{{ section.settings.why_eyebrow }}</p>
+      <h2>{{ section.settings.why_heading }}</h2>
+    </div>
+    <div class="fragrance-home__reason-grid">
+      <article>
+        <span>01</span>
+        <h3>{{ section.settings.reason_one_title }}</h3>
+        <p>{{ section.settings.reason_one_text }}</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>{{ section.settings.reason_two_title }}</h3>
+        <p>{{ section.settings.reason_two_text }}</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>{{ section.settings.reason_three_title }}</h3>
+        <p>{{ section.settings.reason_three_text }}</p>
+      </article>
+      <article>
+        <span>04</span>
+        <h3>{{ section.settings.reason_four_title }}</h3>
+        <p>{{ section.settings.reason_four_text }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="fragrance-home__collection">
+    <div class="fragrance-home__collection-heading">
+      <div>
+        <p class="fragrance-home__eyebrow">{{ section.settings.featured_eyebrow }}</p>
+        <h2>{{ section.settings.featured_heading }}</h2>
+      </div>
+      <a class="fragrance-home__text-link" href="{{ primary_link }}">{{ section.settings.featured_link_label }}</a>
+    </div>
+
+    <div class="fragrance-home__product-grid">
+      {% if featured_collection != blank and featured_collection.products.size > 0 %}
+        {% for product in featured_collection.products limit: section.settings.product_limit %}
+          {% liquid
+            assign product_number = forloop.index
+            if product_number < 10
+              assign product_number = product_number | prepend: '0'
+            endif
+            assign product_description = product.description | strip_html | truncate: 100
+            if product_description == blank
+              assign product_description = section.settings.default_product_note
+            endif
+          %}
+          <a class="fragrance-home__product-card" href="{{ product.url }}">
+            <span class="fragrance-home__product-number">{{ product_number }}</span>
+            {% if forloop.index == 1 %}
+              <span class="fragrance-home__product-badge">Bestseller</span>
+            {% elsif forloop.index == 2 %}
+              <span class="fragrance-home__product-badge">New</span>
+            {% endif %}
+            <div class="fragrance-home__product-media">
+              {% if product.featured_image != blank %}
+                <img
+                  src="{{ product.featured_image | image_url: width: 720 }}"
+                  alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                  width="{{ product.featured_image.width }}"
+                  height="{{ product.featured_image.height }}"
+                  loading="lazy"
+                >
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+              {% endif %}
+            </div>
+            <div class="fragrance-home__product-copy">
+              {% if product.vendor != blank %}
+                <p>{{ product.vendor }}</p>
+              {% else %}
+                <p>Parfum</p>
+              {% endif %}
+              <h3>{{ product.title }}</h3>
+              <span>{{ product_description }}</span>
+              <div class="fragrance-home__product-footer">
+                <strong>{{ product.price | money }}</strong>
+                <em>View scent</em>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      {% else %}
+        {% for i in (1..6) %}
+          {% liquid
+            assign placeholder_number = i
+            if placeholder_number < 10
+              assign placeholder_number = placeholder_number | prepend: '0'
+            endif
+          %}
+          <article class="fragrance-home__product-card">
+            <span class="fragrance-home__product-number">{{ placeholder_number }}</span>
+            <div class="fragrance-home__product-media">
+              {{ 'product-1' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+            </div>
+            <div class="fragrance-home__product-copy">
+              <p>Parfum</p>
+              <h3>Signature scent</h3>
+            <span>{{ section.settings.default_product_note }}</span>
+              <div class="fragrance-home__product-footer">
+                <strong>{{ 6499 | money }}</strong>
+                <em>View scent</em>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="fragrance-home__secondary">
+    <div class="fragrance-home__secondary-copy">
+      <p class="fragrance-home__eyebrow">{{ section.settings.secondary_eyebrow }}</p>
+      <h2>{{ section.settings.secondary_heading }}</h2>
+      <p>{{ section.settings.secondary_text }}</p>
+      <a class="fragrance-home__button fragrance-home__button--dark" href="{{ secondary_link }}">
+        {{ section.settings.secondary_cta_label }}
+      </a>
+    </div>
+
+    <div class="fragrance-home__mini-grid">
+      {% if secondary_collection != blank and secondary_collection.products.size > 0 %}
+        {% for product in secondary_collection.products limit: 4 %}
+          <a class="fragrance-home__mini-product" href="{{ product.url }}">
+            {% if product.featured_image != blank %}
+              <img
+                src="{{ product.featured_image | image_url: width: 520 }}"
+                alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                width="{{ product.featured_image.width }}"
+                height="{{ product.featured_image.height }}"
+                loading="lazy"
+              >
+            {% else %}
+              {{ 'product-2' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+            {% endif %}
+            <span>{{ product.vendor | default: 'Parfum' }}</span>
+            <strong>{{ product.title }}</strong>
+            <small>{{ product.price | money }}</small>
+          </a>
+        {% endfor %}
+      {% else %}
+        {% for i in (1..4) %}
+          <article class="fragrance-home__mini-product">
+            {{ 'product-2' | placeholder_svg_tag: 'fragrance-home__product-placeholder' }}
+            <span>Parfum</span>
+            <strong>Discovery scent</strong>
+            <small>{{ 6499 | money }}</small>
+          </article>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="fragrance-home__experience">
+    <div class="fragrance-home__experience-intro">
+      <p class="fragrance-home__eyebrow">{{ section.settings.experience_eyebrow }}</p>
+      <h2>{{ section.settings.experience_heading }}</h2>
+    </div>
+    <div class="fragrance-home__experience-grid">
+      <article>
+        <h3>{{ section.settings.experience_one_title }}</h3>
+        <p>{{ section.settings.experience_one_text }}</p>
+      </article>
+      <article>
+        <h3>{{ section.settings.experience_two_title }}</h3>
+        <p>{{ section.settings.experience_two_text }}</p>
+      </article>
+      <article>
+        <h3>{{ section.settings.experience_three_title }}</h3>
+        <p>{{ section.settings.experience_three_text }}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="fragrance-home__reviews">
+    <div class="fragrance-home__reviews-heading">
+      <p class="fragrance-home__eyebrow">Customer notes</p>
+      <h2>Designed to make buying perfume feel confident.</h2>
+    </div>
+    <div class="fragrance-home__review-grid">
+      <article>
+        <span>4.9 / 5</span>
+        <p>The store feels premium and makes it easy to choose a gift without guessing.</p>
+        <strong>Gift shopper</strong>
+      </article>
+      <article>
+        <span>Long-wear picks</span>
+        <p>I like that the collections separate everyday scents from deeper evening fragrances.</p>
+        <strong>Daily fragrance wearer</strong>
+      </article>
+      <article>
+        <span>Discovery first</span>
+        <p>The layout helps people browse by mood, not just by product name.</p>
+        <strong>New customer</strong>
+      </article>
+    </div>
+  </section>
+
+  <section class="fragrance-home__atelier">
+    <div class="fragrance-home__atelier-media">
+      {% if cta_image != blank %}
+        <img
+          src="{{ cta_image | image_url: width: 1200 }}"
+          alt="{{ cta_image.alt | default: section.settings.custom_heading | escape }}"
+          width="{{ cta_image.width }}"
+          height="{{ cta_image.height }}"
+          loading="lazy"
+        >
+      {% else %}
+        <img
+          src="{{ 'fragrance-hero-luxury.png' | asset_url }}"
+          alt="{{ section.settings.custom_heading | escape }}"
+          width="1749"
+          height="899"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+    <div class="fragrance-home__atelier-copy">
+      <p class="fragrance-home__eyebrow">{{ section.settings.custom_eyebrow }}</p>
+      <h2>{{ section.settings.custom_heading }}</h2>
+      <p>{{ section.settings.custom_text }}</p>
+      <ol>
+        <li>{{ section.settings.custom_step_one }}</li>
+        <li>{{ section.settings.custom_step_two }}</li>
+        <li>{{ section.settings.custom_step_three }}</li>
+      </ol>
+      <a class="fragrance-home__button fragrance-home__button--light" href="{{ custom_link }}">
+        {{ section.settings.custom_cta_label }}
+      </a>
+    </div>
+  </section>
+
+  <section class="fragrance-home__newsletter">
+    <div>
+      <p class="fragrance-home__eyebrow">{{ shop.name }}</p>
+      <h2>{{ section.settings.newsletter_heading }}</h2>
+      <p>{{ section.settings.newsletter_text }}</p>
+    </div>
+    {% form 'customer', class: 'fragrance-home__newsletter-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label class="visually-hidden" for="FragranceNewsletter-{{ section.id }}">Email</label>
+      <input
+        id="FragranceNewsletter-{{ section.id }}"
+        type="email"
+        name="contact[email]"
+        value="{{ form.email }}"
+        autocomplete="email"
+        autocorrect="off"
+        autocapitalize="off"
+        placeholder="Email address"
+        required
+      >
+      <button type="submit">{{ section.settings.newsletter_button_label }}</button>
+      {% if form.posted_successfully? %}
+        <p class="fragrance-home__form-message" tabindex="-1" autofocus>Thank you for subscribing.</p>
+      {% elsif form.errors %}
+        <p class="fragrance-home__form-message" tabindex="-1" autofocus>{{ form.errors | default_errors }}</p>
+      {% endif %}
+    {% endform %}
+  </section>
+</section>
+
+{% schema %}
+{
+  "name": "Fragrance homepage",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Featured collection"
+    },
+    {
+      "type": "collection",
+      "id": "secondary_collection",
+      "label": "Secondary collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "image_picker",
+      "id": "cta_image",
+      "label": "Custom scent image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Hero eyebrow",
+      "default": "Signature parfum collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Hero heading",
+      "default": "Fragrance for every occasion"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Hero text",
+      "default": "Find refined scents for daily rituals, evenings, gifting, and everything between."
+    },
+    {
+      "type": "url",
+      "id": "primary_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary button label",
+      "default": "Shop new releases"
+    },
+    {
+      "type": "url",
+      "id": "secondary_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary button label",
+      "default": "Shop full collection"
+    },
+    {
+      "type": "text",
+      "id": "metric_one_label",
+      "label": "First metric label",
+      "default": "Scents to explore"
+    },
+    {
+      "type": "text",
+      "id": "metric_two_value",
+      "label": "Second metric value",
+      "default": "EDP"
+    },
+    {
+      "type": "text",
+      "id": "metric_two_label",
+      "label": "Second metric label",
+      "default": "Rich concentration"
+    },
+    {
+      "type": "text",
+      "id": "metric_three_value",
+      "label": "Third metric value",
+      "default": "Gift"
+    },
+    {
+      "type": "text",
+      "id": "metric_three_label",
+      "label": "Third metric label",
+      "default": "Ready presentation"
+    },
+    {
+      "type": "text",
+      "id": "why_eyebrow",
+      "label": "Why eyebrow",
+      "default": "Why shop with us"
+    },
+    {
+      "type": "text",
+      "id": "why_heading",
+      "label": "Why heading",
+      "default": "A refined fragrance store built for discovery."
+    },
+    {
+      "type": "text",
+      "id": "reason_one_title",
+      "label": "Reason 1 title",
+      "default": "Curated edits"
+    },
+    {
+      "type": "textarea",
+      "id": "reason_one_text",
+      "label": "Reason 1 text",
+      "default": "Collections are organized around scent mood, occasion, and daily wear."
+    },
+    {
+      "type": "text",
+      "id": "reason_two_title",
+      "label": "Reason 2 title",
+      "default": "Long-wear focus"
+    },
+    {
+      "type": "textarea",
+      "id": "reason_two_text",
+      "label": "Reason 2 text",
+      "default": "Product pages give each scent room to feel premium and considered."
+    },
+    {
+      "type": "text",
+      "id": "reason_three_title",
+      "label": "Reason 3 title",
+      "default": "Bundle friendly"
+    },
+    {
+      "type": "textarea",
+      "id": "reason_three_text",
+      "label": "Reason 3 text",
+      "default": "The layout keeps discovery sets, bundles, and gift shopping easy to scan."
+    },
+    {
+      "type": "text",
+      "id": "reason_four_title",
+      "label": "Reason 4 title",
+      "default": "Elegant gifting"
+    },
+    {
+      "type": "textarea",
+      "id": "reason_four_text",
+      "label": "Reason 4 text",
+      "default": "A polished visual system gives every product a gift-ready presence."
+    },
+    {
+      "type": "text",
+      "id": "featured_eyebrow",
+      "label": "Featured eyebrow",
+      "default": "New fragrances"
+    },
+    {
+      "type": "text",
+      "id": "featured_heading",
+      "label": "Featured heading",
+      "default": "Fresh arrivals. Signature energy."
+    },
+    {
+      "type": "text",
+      "id": "featured_link_label",
+      "label": "Featured link label",
+      "default": "View collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "label": "Product count",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "textarea",
+      "id": "default_product_note",
+      "label": "Fallback product note",
+      "default": "A polished scent profile designed for daily rituals and evening moments."
+    },
+    {
+      "type": "text",
+      "id": "secondary_eyebrow",
+      "label": "Secondary eyebrow",
+      "default": "Now available"
+    },
+    {
+      "type": "text",
+      "id": "secondary_heading",
+      "label": "Secondary heading",
+      "default": "Shop Arabian perfume"
+    },
+    {
+      "type": "textarea",
+      "id": "secondary_text",
+      "label": "Secondary text",
+      "default": "Explore rich woods, amber trails, musks, spice, and statement scents with depth."
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_label",
+      "label": "Secondary CTA label",
+      "default": "Discover collection"
+    },
+    {
+      "type": "text",
+      "id": "experience_eyebrow",
+      "label": "Experience eyebrow",
+      "default": "The scent ritual"
+    },
+    {
+      "type": "text",
+      "id": "experience_heading",
+      "label": "Experience heading",
+      "default": "Made for choosing, wearing, and gifting with confidence."
+    },
+    {
+      "type": "text",
+      "id": "experience_one_title",
+      "label": "Experience 1 title",
+      "default": "Discover"
+    },
+    {
+      "type": "textarea",
+      "id": "experience_one_text",
+      "label": "Experience 1 text",
+      "default": "Browse by mood, notes, collection, or the moment you want the scent to own."
+    },
+    {
+      "type": "text",
+      "id": "experience_two_title",
+      "label": "Experience 2 title",
+      "default": "Wear"
+    },
+    {
+      "type": "textarea",
+      "id": "experience_two_text",
+      "label": "Experience 2 text",
+      "default": "Editorial product cards keep key details visible without slowing the shop."
+    },
+    {
+      "type": "text",
+      "id": "experience_three_title",
+      "label": "Experience 3 title",
+      "default": "Gift"
+    },
+    {
+      "type": "textarea",
+      "id": "experience_three_text",
+      "label": "Experience 3 text",
+      "default": "Collection pathways make it simple to build a thoughtful cart for someone else."
+    },
+    {
+      "type": "text",
+      "id": "custom_eyebrow",
+      "label": "Custom eyebrow",
+      "default": "A personal experience"
+    },
+    {
+      "type": "text",
+      "id": "custom_heading",
+      "label": "Custom heading",
+      "default": "Create a perfume that feels like yours"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_text",
+      "label": "Custom text",
+      "default": "Guide shoppers into a more personal fragrance moment with a clear premium callout."
+    },
+    {
+      "type": "text",
+      "id": "custom_step_one",
+      "label": "Custom step 1",
+      "default": "Choose a scent direction"
+    },
+    {
+      "type": "text",
+      "id": "custom_step_two",
+      "label": "Custom step 2",
+      "default": "Refine notes and intensity"
+    },
+    {
+      "type": "text",
+      "id": "custom_step_three",
+      "label": "Custom step 3",
+      "default": "Bottle it for daily wear or gifting"
+    },
+    {
+      "type": "url",
+      "id": "custom_link",
+      "label": "Custom CTA link"
+    },
+    {
+      "type": "text",
+      "id": "custom_cta_label",
+      "label": "Custom CTA label",
+      "default": "Start custom scent"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Stay in the world of scent"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "New arrivals, limited edits, and fragrance stories delivered to your inbox."
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_label",
+      "label": "Newsletter button label",
+      "default": "Subscribe"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fragrance homepage"
+    }
+  ]
+}
+{% endschema %}
