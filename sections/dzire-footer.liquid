@@ -1,0 +1,373 @@
+{{ 'dzire-theme.css' | asset_url | stylesheet_tag }}
+
+<div class="dzire-shell">
+  <footer class="dzire-footer">
+    <div class="dzire-footer__inner">
+      <div class="dzire-footer__brand">
+        <div>
+          <h2>{{ section.settings.heading }}</h2>
+          <p>{{ section.settings.text }}</p>
+        </div>
+
+        {% if section.settings.image != blank or section.settings.show_default_image %}
+          <div class="dzire-footer__media" aria-hidden="true">
+            {% if section.settings.image != blank %}
+              <img
+                src="{{ section.settings.image | image_url: width: 900 }}"
+                alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+                width="{{ section.settings.image.width }}"
+                height="{{ section.settings.image.height }}"
+                loading="lazy"
+              >
+            {% else %}
+              <img
+                src="{{ 'fragrance-hero-luxury.png' | asset_url }}"
+                alt=""
+                width="1749"
+                height="899"
+                loading="lazy"
+              >
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <div class="dzire-footer__newsletter">
+          <strong>{{ section.settings.newsletter_heading }}</strong>
+          <span>{{ section.settings.newsletter_text }}</span>
+          {% form 'customer', class: 'dzire-footer__form' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <label class="visually-hidden" for="DzireFooterEmail-{{ section.id }}">Email</label>
+            <input
+              id="DzireFooterEmail-{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              value="{{ form.email }}"
+              autocomplete="email"
+              autocorrect="off"
+              autocapitalize="off"
+              placeholder="{{ section.settings.email_placeholder }}"
+              required
+            >
+            <button type="submit">{{ section.settings.newsletter_button }}</button>
+            {% if form.posted_successfully? %}
+              <p class="dzire-footer__message" tabindex="-1" autofocus>{{ section.settings.success_message }}</p>
+            {% elsif form.errors %}
+              <p class="dzire-footer__message" tabindex="-1" autofocus>{{ form.errors | default_errors }}</p>
+            {% endif %}
+          {% endform %}
+        </div>
+      </div>
+
+      <div>
+        <div class="dzire-footer__columns">
+          <div class="dzire-footer__column">
+            <h3>{{ section.settings.shop_column_heading }}</h3>
+            {% for block in section.blocks %}
+              {% if block.type == 'link' and block.settings.column == 'shop' %}
+                {% liquid
+                  assign footer_link = block.settings.link
+                  if footer_link == blank
+                    assign footer_link = routes.all_products_collection_url
+                  endif
+                %}
+                <a href="{{ footer_link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="dzire-footer__column">
+            <h3>{{ section.settings.help_column_heading }}</h3>
+            {% for block in section.blocks %}
+              {% if block.type == 'link' and block.settings.column == 'help' %}
+                {% liquid
+                  assign help_link = block.settings.link
+                  if help_link == blank
+                    assign help_link = routes.all_products_collection_url
+                  endif
+                %}
+                <a href="{{ help_link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+              {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="dzire-footer__column">
+            <div class="dzire-footer__contact">
+              <h3>{{ section.settings.contact_heading }}</h3>
+              {% for block in section.blocks %}
+                {% if block.type == 'contact' %}
+                  <p {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <div class="dzire-footer__social">
+              <h3>{{ section.settings.social_heading }}</h3>
+              {% for block in section.blocks %}
+                {% if block.type == 'social' %}
+                  {% assign social_link = block.settings.link %}
+                  {% if social_link != blank %}
+                    <a href="{{ social_link }}" {{ block.shopify_attributes }} target="_blank" rel="noopener">
+                      {{ block.settings.label }}
+                    </a>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dzire-footer__bottom">
+      <span>{{ section.settings.bottom_text }}</span>
+      <div class="dzire-footer__bottom-links">
+        {% for block in section.blocks %}
+          {% if block.type == 'link' and block.settings.column == 'legal' %}
+            {% assign legal_link = block.settings.link %}
+            {% if legal_link != blank %}
+              <a href="{{ legal_link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </footer>
+</div>
+
+{% schema %}
+{
+  "name": "Dzire footer",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Dzire Fragrance"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "A refined fragrance boutique for polished daily scents, oud, musk, and gift-ready parfum edits."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Footer image"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_default_image",
+      "label": "Show default perfume image",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Join the scent list"
+    },
+    {
+      "type": "textarea",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "New arrivals, limited edits, and gift-ready fragrance notes."
+    },
+    {
+      "type": "text",
+      "id": "email_placeholder",
+      "label": "Email placeholder",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button",
+      "label": "Newsletter button",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thank you for subscribing."
+    },
+    {
+      "type": "text",
+      "id": "shop_column_heading",
+      "label": "Shop column heading",
+      "default": "Shop"
+    },
+    {
+      "type": "text",
+      "id": "help_column_heading",
+      "label": "Help column heading",
+      "default": "Help"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Contact heading",
+      "default": "Visit"
+    },
+    {
+      "type": "text",
+      "id": "social_heading",
+      "label": "Social heading",
+      "default": "Social"
+    },
+    {
+      "type": "text",
+      "id": "bottom_text",
+      "label": "Bottom text",
+      "default": "© Dzire Fragrance. All rights reserved."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Footer link",
+      "settings": [
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column",
+          "options": [
+            {
+              "value": "shop",
+              "label": "Shop"
+            },
+            {
+              "value": "help",
+              "label": "Help"
+            },
+            {
+              "value": "legal",
+              "label": "Legal bottom"
+            }
+          ],
+          "default": "shop"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Shop all"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact line",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Open daily for fragrance discovery."
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Instagram"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dzire footer",
+      "blocks": [
+        {
+          "type": "link",
+          "settings": {
+            "column": "shop",
+            "label": "All parfums",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "column": "shop",
+            "label": "New arrivals",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "column": "shop",
+            "label": "Arabian perfume",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "column": "help",
+            "label": "Contact",
+            "link": "shopify://pages/contact"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "column": "help",
+            "label": "Shipping",
+            "link": "shopify://policies/shipping-policy"
+          }
+        },
+        {
+          "type": "contact",
+          "settings": {
+            "text": "Premium scent edits for daily wear and gifting."
+          }
+        },
+        {
+          "type": "social",
+          "settings": {
+            "label": "Instagram",
+            "link": "https://www.instagram.com/"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "column": "legal",
+            "label": "Privacy",
+            "link": "shopify://policies/privacy-policy"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "column": "legal",
+            "label": "Terms",
+            "link": "shopify://policies/terms-of-service"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

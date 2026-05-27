@@ -1,0 +1,226 @@
+{{ 'dzire-theme.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign home_link = section.settings.brand_link
+  if home_link == blank
+    assign home_link = routes.root_url
+  endif
+
+  assign announcement_link = section.settings.announcement_link
+%}
+
+<div class="dzire-shell">
+  <header class="dzire-header{% if section.settings.sticky_header %} dzire-header--sticky{% endif %}">
+    {% if section.settings.announcement_text != blank %}
+      <div class="dzire-header__announcement">
+        {% if announcement_link != blank %}
+          <a href="{{ announcement_link }}">{{ section.settings.announcement_text }}</a>
+        {% else %}
+          {{ section.settings.announcement_text }}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="dzire-header__bar">
+      <a class="dzire-header__brand" href="{{ home_link }}" aria-label="{{ section.settings.brand_name | escape }}">
+        {% if section.settings.logo_image != blank %}
+          <img
+            class="dzire-header__logo"
+            src="{{ section.settings.logo_image | image_url: height: 90 }}"
+            alt="{{ section.settings.logo_image.alt | default: section.settings.brand_name | escape }}"
+            width="{{ section.settings.logo_image.width }}"
+            height="{{ section.settings.logo_image.height }}"
+            loading="eager"
+          >
+        {% endif %}
+        <span class="dzire-header__wordmark">
+          <span class="dzire-header__name">{{ section.settings.brand_name }}</span>
+          {% if section.settings.tagline != blank %}
+            <span class="dzire-header__tagline">{{ section.settings.tagline }}</span>
+          {% endif %}
+        </span>
+      </a>
+
+      <nav class="dzire-header__nav" aria-label="Main navigation">
+        {% for block in section.blocks %}
+          {% if block.type == 'link' %}
+            {% liquid
+              assign nav_link = block.settings.link
+              if nav_link == blank
+                assign nav_link = routes.all_products_collection_url
+              endif
+            %}
+            <a href="{{ nav_link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+          {% endif %}
+        {% endfor %}
+      </nav>
+
+      <div class="dzire-header__actions">
+        {% if section.settings.show_search %}
+          <a class="dzire-header__icon-link dzire-header__search" href="{{ routes.search_url }}" aria-label="Search">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M10.8 18.1a7.3 7.3 0 1 1 0-14.6 7.3 7.3 0 0 1 0 14.6Zm5.2-2.1 4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </a>
+        {% endif %}
+
+        {% if shop.customer_accounts_enabled and section.settings.show_account %}
+          <a class="dzire-header__icon-link dzire-header__account" href="{{ routes.account_url }}" aria-label="Account">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 12.6a4.2 4.2 0 1 0 0-8.4 4.2 4.2 0 0 0 0 8.4Zm7.2 7.2a7.2 7.2 0 0 0-14.4 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </a>
+        {% endif %}
+
+        <a class="dzire-header__icon-link" href="{{ routes.cart_url }}" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7.2 8.1h11.6l-1.2 10.4H8.4L7.2 8.1Zm3.1 0a3.7 3.7 0 0 1 7.4 0" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+          {% if cart.item_count > 0 %}
+            <span class="dzire-header__cart-count">{{ cart.item_count }}</span>
+          {% endif %}
+        </a>
+
+        <details class="dzire-header__drawer">
+          <summary class="dzire-header__menu-button" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </summary>
+          <div class="dzire-header__mobile-panel">
+            {% for block in section.blocks %}
+              {% if block.type == 'link' %}
+                {% liquid
+                  assign mobile_link = block.settings.link
+                  if mobile_link == blank
+                    assign mobile_link = routes.all_products_collection_url
+                  endif
+                %}
+                <a href="{{ mobile_link }}">{{ block.settings.label }}</a>
+              {% endif %}
+            {% endfor %}
+            {% if section.settings.show_search %}
+              <a href="{{ routes.search_url }}">Search</a>
+            {% endif %}
+          </div>
+        </details>
+      </div>
+    </div>
+  </header>
+</div>
+
+{% schema %}
+{
+  "name": "Dzire header",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "sticky_header",
+      "label": "Sticky header",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "New scent edits, discovery sets, and gift-ready parfums"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo_image",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "Dzire Fragrance"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Parfums and oud"
+    },
+    {
+      "type": "url",
+      "id": "brand_link",
+      "label": "Brand link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link",
+      "name": "Navigation link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dzire header",
+      "blocks": [
+        {
+          "type": "link",
+          "settings": {
+            "label": "Shop",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "New arrivals",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "Arabian perfume",
+            "link": "shopify://collections/all"
+          }
+        },
+        {
+          "type": "link",
+          "settings": {
+            "label": "Gifts",
+            "link": "shopify://collections/all"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
