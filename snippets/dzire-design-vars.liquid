@@ -1,0 +1,38 @@
+{% if settings.dzire_enable_design_system %}
+  <style>
+    :root {
+      --dzire-site-bg: {{ settings.dzire_site_background }};
+      --dzire-surface: {{ settings.dzire_surface }};
+      --dzire-surface-soft: {{ settings.dzire_surface_soft }};
+      --dzire-text: {{ settings.dzire_text }};
+      --dzire-heading: {{ settings.dzire_heading }};
+      --dzire-muted: {{ settings.dzire_muted_text }};
+      --dzire-accent: {{ settings.dzire_accent }};
+      --dzire-accent-contrast: {{ settings.dzire_accent_contrast }};
+      --dzire-secondary: {{ settings.dzire_secondary_accent }};
+      --dzire-border: {{ settings.dzire_border }};
+      --dzire-shadow: {{ settings.dzire_shadow }};
+      --dzire-body-size: {{ settings.dzire_body_font_size }}px;
+      --dzire-heading-scale: {{ settings.dzire_heading_scale | divided_by: 100.0 }};
+      --dzire-button-radius: {{ settings.dzire_button_radius }}px;
+      --dzire-card-radius: {{ settings.dzire_card_radius }}px;
+      --dzire-product-title-size: {{ settings.dzire_product_title_size }}px;
+      --dzire-product-body-size: {{ settings.dzire_product_body_size }}px;
+      --dzire-product-price-size: {{ settings.dzire_product_price_size }}px;
+      --dzire-product-media-bg: {{ settings.dzire_product_media_background }};
+      --dzire-cart-bg: {{ settings.dzire_cart_background }};
+      --dzire-cart-surface: {{ settings.dzire_cart_surface }};
+      --dzire-bg-image-opacity: {{ settings.dzire_background_image_opacity | divided_by: 100.0 }};
+    }
+
+    {% if settings.dzire_background_image != blank %}
+      body.dzire-design-active::before {
+        background-image:
+          linear-gradient(135deg, rgb(255 255 255 / 78%), rgb(255 255 255 / 52%)),
+          url({{ settings.dzire_background_image | image_url: width: 2400 }});
+        background-position: {{ settings.dzire_background_image_position }};
+        background-size: cover;
+      }
+    {% endif %}
+  </style>
+{% endif %}

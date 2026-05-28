@@ -16,21 +16,21 @@
           "type": "metric",
           "settings": {
             "value": "100+",
-            "label": "Scents to explore"
+            "label": "Scents to layer"
           }
         },
         "metric_edp": {
           "type": "metric",
           "settings": {
             "value": "EDP",
-            "label": "Rich concentration"
+            "label": "Elevated strength"
           }
         },
         "metric_gift": {
           "type": "metric",
           "settings": {
             "value": "Gift",
-            "label": "Ready presentation"
+            "label": "Wrapped with care"
           }
         }
       },
@@ -42,25 +42,25 @@
       "settings": {
         "featured_collection": "all",
         "hero_image": "",
-        "eyebrow": "Signature parfum collection",
-        "heading": "Fragrance for every occasion",
-        "subheading": "Find refined scents for daily rituals, evenings, gifting, and everything between.",
+        "eyebrow": "Dzire scent studio",
+        "heading": "A fragrance wardrobe with quiet drama",
+        "subheading": "Explore polished parfums built around mood, memory, texture, and the way you want to be remembered.",
         "primary_link": "shopify://collections/all",
         "primary_label": "Shop new releases",
         "secondary_link": "shopify://collections/all",
         "secondary_label": "Shop full collection",
         "show_featured_product": true,
-        "featured_product_label": "Featured scent",
-        "section_background": "#14231f",
+        "featured_product_label": "Studio pick",
+        "section_background": "#162522",
         "hero_text": "#fffdf8",
         "hero_muted_text": "#e8ddd1",
-        "accent_color": "#f3d89b",
+        "accent_color": "#c7a35b",
         "primary_button_background": "#fffdf8",
         "primary_button_text": "#11100d",
         "primary_button_border": "#fffdf8",
-        "secondary_button_background": "#10221d",
+        "secondary_button_background": "#8c4e68",
         "secondary_button_text": "#fffdf8",
-        "secondary_button_border": "#fffdf8"
+        "secondary_button_border": "#8c4e68"
       }
     },
     "fragrance_nav": {
@@ -69,42 +69,42 @@
         "nav_all": {
           "type": "link",
           "settings": {
-            "label": "All parfums",
+            "label": "All scents",
             "link": "shopify://collections/all"
           }
         },
         "nav_new": {
           "type": "link",
           "settings": {
-            "label": "New arrivals",
+            "label": "Just added",
             "link": "shopify://collections/all"
           }
         },
         "nav_men": {
           "type": "link",
           "settings": {
-            "label": "For him",
+            "label": "Warm woods",
             "link": "shopify://collections/all"
           }
         },
         "nav_women": {
           "type": "link",
           "settings": {
-            "label": "For her",
+            "label": "Soft florals",
             "link": "shopify://collections/all"
           }
         },
         "nav_unisex": {
           "type": "link",
           "settings": {
-            "label": "Unisex",
+            "label": "Clean musk",
             "link": "shopify://collections/all"
           }
         },
         "nav_arabian": {
           "type": "link",
           "settings": {
-            "label": "Arabian perfume",
+            "label": "Oud edit",
             "link": "shopify://collections/all"
           }
         }
@@ -119,10 +119,10 @@
       ],
       "settings": {
         "aria_label": "Popular fragrance categories",
-        "nav_background": "#11100d",
+        "nav_background": "#171615",
         "nav_text": "#fffdf8",
         "nav_border": "#3a3935",
-        "nav_hover_background": "#25352f"
+        "nav_hover_background": "#2f7066"
       }
     },
     "fragrance_trust": {
@@ -131,22 +131,22 @@
         "trust_selection": {
           "type": "benefit",
           "settings": {
-            "title": "Authentic selection",
-            "text": "Curated parfum, oud, musk, and daily-wear scents."
+            "title": "Curated by feeling",
+            "text": "Scents arranged by mood, trail, warmth, and daily wear."
           }
         },
         "trust_gifting": {
           "type": "benefit",
           "settings": {
-            "title": "Gift-ready presentation",
-            "text": "Elegant shopping paths for birthdays, events, and self-gifting."
+            "title": "Gift-ready rhythm",
+            "text": "Clear edits for birthdays, celebrations, and personal treats."
           }
         },
         "trust_discovery": {
           "type": "benefit",
           "settings": {
-            "title": "Easy discovery",
-            "text": "Shop by mood, concentration, occasion, and scent family."
+            "title": "Easy scent matching",
+            "text": "Choose by atmosphere, occasion, and the impression you want."
           }
         }
       },
@@ -157,11 +157,11 @@
       ],
       "settings": {
         "aria_label": "Shopping benefits",
-        "section_background": "#fffdf8",
-        "card_background": "#ffffff",
-        "card_text": "#11100d",
+        "section_background": "#f4f1ec",
+        "card_background": "#fffaf3",
+        "card_text": "#171615",
         "card_muted_text": "#6d675f",
-        "card_border": "#e5ded2"
+        "card_border": "#d8cec1"
       }
     },
     "fragrance_moods": {
@@ -171,9 +171,9 @@
           "type": "mood",
           "settings": {
             "style": "fresh",
-            "eyebrow": "Fresh",
-            "title": "Clean daily signatures",
-            "text": "Bright citrus, airy musk, soft florals",
+            "eyebrow": "Bare",
+            "title": "Clean second-skin musks",
+            "text": "Soft cotton, mineral air, polished skin",
             "link": "shopify://collections/all"
           }
         },
@@ -181,9 +181,9 @@
           "type": "mood",
           "settings": {
             "style": "floral",
-            "eyebrow": "Floral",
-            "title": "Romantic and polished",
-            "text": "Rose, jasmine, powder, amber",
+            "eyebrow": "Petal",
+            "title": "Florals with depth",
+            "text": "Rose, jasmine, suede, brushed woods",
             "link": "shopify://collections/all"
           }
         },
@@ -192,8 +192,8 @@
           "settings": {
             "style": "oud",
             "eyebrow": "Oud",
-            "title": "Warm statement trails",
-            "text": "Woods, spice, resin, smoke",
+            "title": "Slow-burning woods",
+            "text": "Oud, resin, saffron, shadowed amber",
             "link": "shopify://collections/all"
           }
         },
@@ -201,9 +201,9 @@
           "type": "mood",
           "settings": {
             "style": "night",
-            "eyebrow": "Evening",
-            "title": "Deep after-dark scents",
-            "text": "Vanilla, leather, amber, musk",
+            "eyebrow": "After dark",
+            "title": "Velvet night signatures",
+            "text": "Vanilla, plum, leather, smoked musk",
             "link": "shopify://collections/all"
           }
         }
@@ -216,12 +216,12 @@
       ],
       "settings": {
         "aria_label": "Shop by mood",
-        "section_background": "#fffdf8",
-        "card_background": "#ffffff",
-        "card_text": "#11100d",
+        "section_background": "#f4f1ec",
+        "card_background": "#fffaf3",
+        "card_text": "#171615",
         "card_muted_text": "#6d675f",
-        "card_border": "#e5ded2",
-        "accent_color": "#b08a45"
+        "card_border": "#d8cec1",
+        "accent_color": "#8c4e68"
       }
     },
     "fragrance_why": {
@@ -231,32 +231,32 @@
           "type": "reason",
           "settings": {
             "number": "01",
-            "title": "Curated edits",
-            "text": "Collections are organized around scent mood, occasion, and daily wear."
+            "title": "Editorial edits",
+            "text": "Every collection has a point of view so shoppers can choose faster."
           }
         },
         "reason_wear": {
           "type": "reason",
           "settings": {
             "number": "02",
-            "title": "Long-wear focus",
-            "text": "Product pages give each scent room to feel premium and considered."
+            "title": "Lasting presence",
+            "text": "Layouts highlight concentration, texture, and the feeling of each scent."
           }
         },
         "reason_bundle": {
           "type": "reason",
           "settings": {
             "number": "03",
-            "title": "Bundle friendly",
-            "text": "The layout keeps discovery sets, bundles, and gift shopping easy to scan."
+            "title": "Discovery friendly",
+            "text": "Cards stay compact so more scents can be compared at a glance."
           }
         },
         "reason_gifting": {
           "type": "reason",
           "settings": {
             "number": "04",
-            "title": "Elegant gifting",
-            "text": "A polished visual system gives every product a gift-ready presence."
+            "title": "Polished gifting",
+            "text": "The store feels elevated without making the buying journey heavy."
           }
         }
       },
@@ -267,30 +267,30 @@
         "reason_gifting"
       ],
       "settings": {
-        "eyebrow": "Why shop with us",
-        "heading": "A refined fragrance store built for discovery.",
-        "section_background": "#fffdf8",
-        "card_background": "#ffffff",
-        "card_text": "#11100d",
+        "eyebrow": "Why Dzire",
+        "heading": "Perfume shopping shaped around emotion, not noise.",
+        "section_background": "#f4f1ec",
+        "card_background": "#fffaf3",
+        "card_text": "#171615",
         "card_muted_text": "#6d675f",
-        "card_border": "#e5ded2",
-        "accent_color": "#b08a45"
+        "card_border": "#d8cec1",
+        "accent_color": "#8c4e68"
       }
     },
     "fragrance_products": {
       "type": "fragrance-featured-products",
       "settings": {
         "collection": "all",
-        "eyebrow": "New fragrances",
-        "heading": "Fresh arrivals. Signature energy.",
+        "eyebrow": "Studio shelf",
+        "heading": "Compact cards for fast fragrance discovery.",
         "link": "shopify://collections/all",
         "link_label": "View collection",
         "product_limit": 6,
         "show_badges": true,
-        "first_badge": "Bestseller",
-        "second_badge": "New",
+        "first_badge": "Signature",
+        "second_badge": "New drop",
         "fallback_vendor": "Parfum",
-        "default_product_note": "A polished scent profile designed for daily rituals and evening moments.",
+        "default_product_note": "A composed scent profile for daily rituals, evening presence, and gifting.",
         "product_link_label": "View scent",
         "columns_desktop": 4,
         "columns_tablet": 3,
@@ -300,16 +300,16 @@
         "show_vendor": true,
         "show_description": true,
         "show_price": true,
-        "section_background": "#fffdf8",
-        "card_background": "#ffffff",
-        "card_text": "#11100d",
+        "section_background": "#f4f1ec",
+        "card_background": "#fffaf3",
+        "card_text": "#171615",
         "card_muted_text": "#6d675f",
-        "card_border": "#e5ded2",
-        "accent_color": "#b08a45",
-        "badge_background": "#11100d",
+        "card_border": "#d8cec1",
+        "accent_color": "#8c4e68",
+        "badge_background": "#171615",
         "badge_text": "#fffdf8",
-        "product_image_background": "#f8f2e6",
-        "product_link_background": "#11100d",
+        "product_image_background": "#f1ece4",
+        "product_link_background": "#8c4e68",
         "product_link_text": "#fffdf8"
       }
     },
@@ -317,25 +317,25 @@
       "type": "fragrance-collection-feature",
       "settings": {
         "collection": "all",
-        "eyebrow": "Now available",
-        "heading": "Shop Arabian perfume",
-        "text": "Explore rich woods, amber trails, musks, spice, and statement scents with depth.",
+        "eyebrow": "Deep shelf",
+        "heading": "Oud, amber, and textured woods",
+        "text": "A focused edit for shoppers who want warmth, depth, and a memorable trail.",
         "link": "shopify://collections/all",
-        "button_label": "Discover collection",
+        "button_label": "Explore the edit",
         "fallback_vendor": "Parfum",
-        "section_background": "#fffdf8",
-        "feature_background": "#14231f",
+        "section_background": "#f4f1ec",
+        "feature_background": "#162522",
         "feature_text": "#fffdf8",
         "feature_muted_text": "#d8d0c4",
-        "accent_color": "#b08a45",
-        "button_background": "#11100d",
+        "accent_color": "#c7a35b",
+        "button_background": "#8c4e68",
         "button_text": "#fffdf8",
-        "button_border": "#11100d",
+        "button_border": "#8c4e68",
         "mini_card_background": "#25352f",
         "mini_card_border": "#41524b",
         "mini_card_text": "#fffdf8",
         "mini_card_muted_text": "#d8d0c4",
-        "product_image_background": "#f8f2e6"
+        "product_image_background": "#f1ece4"
       }
     },
     "fragrance_experience": {
@@ -345,21 +345,21 @@
           "type": "step",
           "settings": {
             "title": "Discover",
-            "text": "Browse by mood, notes, collection, or the moment you want the scent to own."
+            "text": "Start with mood, texture, or the room you want your scent to fill."
           }
         },
         "experience_wear": {
           "type": "step",
           "settings": {
             "title": "Wear",
-            "text": "Editorial product cards keep key details visible without slowing the shop."
+            "text": "Compare scent families, price, and story without oversized cards."
           }
         },
         "experience_gift": {
           "type": "step",
           "settings": {
             "title": "Gift",
-            "text": "Collection pathways make it simple to build a thoughtful cart for someone else."
+            "text": "Use focused edits to build a polished gift or a personal rotation."
           }
         }
       },
@@ -369,14 +369,14 @@
         "experience_gift"
       ],
       "settings": {
-        "eyebrow": "The scent ritual",
-        "heading": "Made for choosing, wearing, and gifting with confidence.",
-        "section_background": "#fffdf8",
-        "card_background": "#ffffff",
-        "card_text": "#11100d",
+        "eyebrow": "How it feels",
+        "heading": "A store experience that slows the scroll and sharpens the choice.",
+        "section_background": "#f4f1ec",
+        "card_background": "#fffaf3",
+        "card_text": "#171615",
         "card_muted_text": "#6d675f",
-        "card_border": "#e5ded2",
-        "accent_color": "#b08a45"
+        "card_border": "#d8cec1",
+        "accent_color": "#8c4e68"
       }
     },
     "fragrance_reviews": {
@@ -386,7 +386,7 @@
           "type": "review",
           "settings": {
             "label": "4.9 / 5",
-            "quote": "The store feels premium and makes it easy to choose a gift without guessing.",
+            "quote": "The collections make it easy to choose a scent that feels intentional.",
             "name": "Gift shopper"
           }
         },
@@ -394,7 +394,7 @@
           "type": "review",
           "settings": {
             "label": "Long-wear picks",
-            "quote": "I like that the collections separate everyday scents from deeper evening fragrances.",
+            "quote": "The mood edits helped me separate clean daily scents from deeper night scents.",
             "name": "Daily fragrance wearer"
           }
         },
@@ -402,7 +402,7 @@
           "type": "review",
           "settings": {
             "label": "Discovery first",
-            "quote": "The layout helps people browse by mood, not just by product name.",
+            "quote": "The product cards are calm, compact, and easy to compare.",
             "name": "New customer"
           }
         }
@@ -414,13 +414,13 @@
       ],
       "settings": {
         "eyebrow": "Customer notes",
-        "heading": "Designed to make buying perfume feel confident.",
-        "section_background": "#fffdf8",
-        "card_background": "#ffffff",
-        "card_text": "#11100d",
+        "heading": "Clear choices, richer scents, better gifting.",
+        "section_background": "#f4f1ec",
+        "card_background": "#fffaf3",
+        "card_text": "#171615",
         "card_muted_text": "#6d675f",
-        "card_border": "#e5ded2",
-        "accent_color": "#b08a45"
+        "card_border": "#d8cec1",
+        "accent_color": "#8c4e68"
       }
     },
     "fragrance_atelier": {
@@ -452,15 +452,15 @@
       ],
       "settings": {
         "image": "",
-        "eyebrow": "A personal experience",
-        "heading": "Create a perfume that feels like yours",
-        "text": "Guide shoppers into a more personal fragrance moment with a clear premium callout.",
+        "eyebrow": "Personal ritual",
+        "heading": "Build a scent story around your day",
+        "text": "Invite shoppers into a more personal moment with guided scent direction and refined cues.",
         "button_link": "shopify://collections/all",
-        "button_label": "Start custom scent",
-        "section_background": "#20362e",
+        "button_label": "Start the ritual",
+        "section_background": "#2f7066",
         "text_color": "#fffdf8",
         "muted_text": "#d8d0c4",
-        "accent_color": "#f3d89b",
+        "accent_color": "#c7a35b",
         "border_color": "#53665d",
         "button_background": "#fffdf8",
         "button_text": "#11100d",
@@ -470,20 +470,20 @@
     "fragrance_newsletter": {
       "type": "fragrance-newsletter",
       "settings": {
-        "eyebrow": "Dzire Fragrance",
-        "heading": "Stay in the world of scent",
-        "text": "New arrivals, limited edits, and fragrance stories delivered to your inbox.",
+        "eyebrow": "Dzire letters",
+        "heading": "Receive scent edits before they sell out",
+        "text": "New drops, gift notes, and fragrance rituals delivered with restraint.",
         "placeholder": "Email address",
         "button_label": "Subscribe",
         "success_message": "Thank you for subscribing.",
-        "section_background": "#11100d",
+        "section_background": "#171615",
         "text_color": "#fffdf8",
         "muted_text": "#d8d0c4",
-        "accent_color": "#b08a45",
+        "accent_color": "#c7a35b",
         "input_background": "#fffdf8",
         "input_text": "#11100d",
         "input_border": "#3a3935",
-        "button_background": "#b08a45",
+        "button_background": "#8c4e68",
         "button_text": "#fffdf8"
       }
     }

@@ -15,9 +15,9 @@
           "type": "_cart-title",
           "static": true,
           "settings": {
-            "title": "Cart",
+            "title": "Your scent bag",
             "show_count": true,
-            "type_preset": "h4",
+            "type_preset": "h3",
             "alignment": "left",
             "padding-block-start": 0,
             "padding-block-end": 0,
@@ -30,7 +30,7 @@
           "type": "_cart-products",
           "static": true,
           "settings": {
-            "gap": 24,
+            "gap": 16,
             "image_ratio": "portrait",
             "dividers": true,
             "vendor": false,
@@ -51,7 +51,7 @@
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
-            "border_radius": 0
+            "border_radius": 12
           },
           "blocks": {}
         }
@@ -59,8 +59,8 @@
       "settings": {
         "section_width": "page-width",
         "color_scheme": "",
-        "padding-block-start": 24,
-        "padding-block-end": 0
+        "padding-block-start": 32,
+        "padding-block-end": 32
       }
     },
     "product_list_NNFgcy": {
@@ -104,7 +104,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>You may also like</h3>",
+                "text": "<h3>Complete the ritual</h3>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",

@@ -8,6 +8,226 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Dzire visual system",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "dzire_enable_design_system",
+        "label": "Use Dzire custom styling",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Global colors"
+      },
+      {
+        "type": "color",
+        "id": "dzire_site_background",
+        "label": "Website background",
+        "default": "#f4f1ec"
+      },
+      {
+        "type": "color",
+        "id": "dzire_surface",
+        "label": "Main surface",
+        "default": "#fffaf3"
+      },
+      {
+        "type": "color",
+        "id": "dzire_surface_soft",
+        "label": "Soft surface",
+        "default": "#e9efe7"
+      },
+      {
+        "type": "color",
+        "id": "dzire_text",
+        "label": "Body text",
+        "default": "#171615"
+      },
+      {
+        "type": "color",
+        "id": "dzire_heading",
+        "label": "Heading text",
+        "default": "#171615"
+      },
+      {
+        "type": "color",
+        "id": "dzire_muted_text",
+        "label": "Muted text",
+        "default": "#6f665e"
+      },
+      {
+        "type": "color",
+        "id": "dzire_accent",
+        "label": "Primary accent",
+        "default": "#8c4e68"
+      },
+      {
+        "type": "color",
+        "id": "dzire_accent_contrast",
+        "label": "Primary accent text",
+        "default": "#fffdf8"
+      },
+      {
+        "type": "color",
+        "id": "dzire_secondary_accent",
+        "label": "Secondary accent",
+        "default": "#2f7066"
+      },
+      {
+        "type": "color",
+        "id": "dzire_border",
+        "label": "Borders",
+        "default": "#d8cec1"
+      },
+      {
+        "type": "color",
+        "id": "dzire_shadow",
+        "label": "Shadow color",
+        "default": "#171615"
+      },
+      {
+        "type": "header",
+        "content": "Typography and shape"
+      },
+      {
+        "type": "range",
+        "id": "dzire_body_font_size",
+        "label": "Body font size",
+        "min": 12,
+        "max": 18,
+        "step": 1,
+        "unit": "px",
+        "default": 14
+      },
+      {
+        "type": "range",
+        "id": "dzire_heading_scale",
+        "label": "Heading scale",
+        "min": 80,
+        "max": 120,
+        "step": 5,
+        "unit": "%",
+        "default": 95
+      },
+      {
+        "type": "range",
+        "id": "dzire_button_radius",
+        "label": "Button radius",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "dzire_card_radius",
+        "label": "Card radius",
+        "min": 0,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 12
+      },
+      {
+        "type": "header",
+        "content": "Background image"
+      },
+      {
+        "type": "image_picker",
+        "id": "dzire_background_image",
+        "label": "Website background image"
+      },
+      {
+        "type": "range",
+        "id": "dzire_background_image_opacity",
+        "label": "Background image opacity",
+        "min": 0,
+        "max": 45,
+        "step": 5,
+        "unit": "%",
+        "default": 0
+      },
+      {
+        "type": "select",
+        "id": "dzire_background_image_position",
+        "label": "Background image position",
+        "options": [
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "top center",
+            "label": "Top"
+          },
+          {
+            "value": "bottom center",
+            "label": "Bottom"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "header",
+        "content": "Product page"
+      },
+      {
+        "type": "range",
+        "id": "dzire_product_title_size",
+        "label": "Product title size",
+        "min": 24,
+        "max": 48,
+        "step": 1,
+        "unit": "px",
+        "default": 34
+      },
+      {
+        "type": "range",
+        "id": "dzire_product_body_size",
+        "label": "Product body text size",
+        "min": 13,
+        "max": 18,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "range",
+        "id": "dzire_product_price_size",
+        "label": "Product price size",
+        "min": 14,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 18
+      },
+      {
+        "type": "color",
+        "id": "dzire_product_media_background",
+        "label": "Product image background",
+        "default": "#f1ece4"
+      },
+      {
+        "type": "header",
+        "content": "Cart"
+      },
+      {
+        "type": "color",
+        "id": "dzire_cart_background",
+        "label": "Cart background",
+        "default": "#fffaf3"
+      },
+      {
+        "type": "color",
+        "id": "dzire_cart_surface",
+        "label": "Cart summary background",
+        "default": "#f4eee6"
+      }
+    ]
+  },
+  {
     "name": "t:names.logo_and_favicon",
     "settings": [
       {

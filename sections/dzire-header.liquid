@@ -9,16 +9,6 @@
   assign announcement_link = section.settings.announcement_link
 %}
 
-{% if section.settings.sticky_header %}
-  <style>
-    #shopify-section-{{ section.id }} {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-  </style>
-{% endif %}
-
 <div
   class="dzire-shell"
   style="
@@ -135,6 +125,23 @@
   </header>
 </div>
 
+<script>
+  (() => {
+    const headerGroup = document.getElementById('header-group');
+    if (!headerGroup) return;
+    const isSticky = {{ section.settings.sticky_header | json }};
+    headerGroup.classList.toggle('dzire-header-group-sticky', isSticky);
+    headerGroup.dataset.stickyState = isSticky ? 'active' : 'idle';
+
+    const syncHeaderHeight = () => {
+      document.body.style.setProperty('--header-height', `${headerGroup.offsetHeight}px`);
+      document.body.style.setProperty('--header-group-height', `${headerGroup.offsetHeight}px`);
+    };
+    syncHeaderHeight();
+    window.requestAnimationFrame(syncHeaderHeight);
+  })();
+</script>
+
 {% schema %}
 {
   "name": "Dzire header",
@@ -156,13 +163,13 @@
       "type": "color",
       "id": "header_background",
       "label": "Header background",
-      "default": "#fffdf8"
+      "default": "#fffaf3"
     },
     {
       "type": "color",
       "id": "header_text",
       "label": "Header text",
-      "default": "#12110e"
+      "default": "#171615"
     },
     {
       "type": "color",
@@ -174,13 +181,13 @@
       "type": "color",
       "id": "header_border",
       "label": "Header border",
-      "default": "#e7dfd2"
+      "default": "#d8cec1"
     },
     {
       "type": "color",
       "id": "announcement_background",
       "label": "Announcement background",
-      "default": "#10221d"
+      "default": "#2f7066"
     },
     {
       "type": "color",
@@ -192,31 +199,31 @@
       "type": "color",
       "id": "link_hover_background",
       "label": "Menu hover background",
-      "default": "#f8f2e6"
+      "default": "#e9efe7"
     },
     {
       "type": "color",
       "id": "button_background",
       "label": "Icon button background",
-      "default": "#fffdf8"
+      "default": "#fffaf3"
     },
     {
       "type": "color",
       "id": "button_text",
       "label": "Icon button text",
-      "default": "#12110e"
+      "default": "#171615"
     },
     {
       "type": "color",
       "id": "button_border",
       "label": "Icon button border",
-      "default": "#e7dfd2"
+      "default": "#d8cec1"
     },
     {
       "type": "color",
       "id": "cart_badge_background",
       "label": "Cart badge background",
-      "default": "#10221d"
+      "default": "#8c4e68"
     },
     {
       "type": "color",
@@ -228,7 +235,7 @@
       "type": "text",
       "id": "announcement_text",
       "label": "Announcement text",
-      "default": "New scent edits, discovery sets, and gift-ready parfums"
+      "default": "Private scent edits, layered rituals, and gift-ready parfums"
     },
     {
       "type": "url",
