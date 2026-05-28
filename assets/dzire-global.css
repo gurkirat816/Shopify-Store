@@ -28,6 +28,17 @@ body.dzire-design-active .content-for-layout {
     var(--dzire-site-bg);
 }
 
+body.dzire-design-active .fragrance-home {
+  --fh-ink: var(--dzire-text);
+  --fh-muted: var(--dzire-muted);
+  --fh-brass: var(--dzire-accent);
+  --fh-line: var(--dzire-border);
+  --fh-heading-text: var(--fh-card-text, var(--dzire-heading));
+  --fh-body-text: var(--fh-card-text, var(--dzire-text));
+  --fh-muted-text: var(--fh-card-muted, var(--dzire-muted));
+  color: var(--fh-body-text);
+}
+
 body.dzire-design-active :is(h1, h2, h3, h4, h5, h6) {
   color: var(--dzire-heading);
   letter-spacing: 0;

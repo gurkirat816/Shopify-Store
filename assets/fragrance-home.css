@@ -9,8 +9,11 @@
   --fh-brass: #b08a45;
   --fh-muted: #6d675f;
   --fh-line: rgb(17 16 13 / 12%);
+  --fh-heading-text: var(--fh-card-text, var(--fh-ink));
+  --fh-body-text: var(--fh-card-text, var(--fh-ink));
+  --fh-muted-text: var(--fh-card-muted, var(--fh-muted));
   background: var(--fh-section-bg, var(--fh-paper));
-  color: var(--fh-ink);
+  color: var(--fh-body-text);
   isolation: isolate;
 }
 
@@ -58,6 +61,11 @@
   background: var(--fh-button-light-bg, #fffdf8);
   border-color: var(--fh-button-light-border, transparent);
   color: var(--fh-button-light-text, var(--fh-ink));
+}
+
+.fragrance-home__button--light:hover {
+  background: var(--fh-button-light-hover-bg, var(--fh-button-light-bg, #fffdf8));
+  color: var(--fh-button-light-hover-text, var(--fh-button-light-text, var(--fh-ink)));
 }
 
 .fragrance-home__button--ghost {
@@ -414,7 +422,7 @@
 .fragrance-home__reviews h2,
 .fragrance-home__atelier h2,
 .fragrance-home__newsletter h2 {
-  color: var(--fh-ink);
+  color: var(--fh-heading-text, var(--fh-ink));
   font-family: var(--font-heading--family);
   font-size: 1.95rem;
   line-height: 1.12;
@@ -476,7 +484,7 @@
 .fragrance-home__text-link {
   align-items: center;
   border-bottom: 1px solid currentColor;
-  color: var(--fh-link-color, var(--fh-ink));
+  color: var(--fh-link-color, var(--fh-accent, var(--fh-ink)));
   display: inline-flex;
   font-size: 0.84rem;
   font-weight: 800;
