@@ -25,6 +25,15 @@
   if secondary_link == blank
     assign secondary_link = primary_link
   endif
+
+  assign hero_heading_color = section.settings.heading_color | default: section.settings.hero_text | default: '#fffdf8'
+  assign hero_text_color = section.settings.hero_text | default: hero_heading_color
+  assign hero_muted_color = section.settings.hero_muted_text | default: hero_text_color
+  assign primary_button_bg = section.settings.primary_button_background | default: '#fffdf8'
+  assign primary_button_text = section.settings.primary_button_text | default: '#11100d'
+  assign primary_button_border = section.settings.primary_button_border | default: primary_button_bg
+  assign primary_button_hover_bg = section.settings.primary_button_hover_background | default: primary_button_bg
+  assign primary_button_hover_text = section.settings.primary_button_hover_text | default: primary_button_text
 %}
 
 <div
@@ -32,15 +41,15 @@
   style="
     --fh-section-bg: {{ section.settings.section_background }};
     --fh-hero-bg: {{ section.settings.section_background }};
-    --fh-hero-heading: {{ section.settings.heading_color }};
-    --fh-hero-text: {{ section.settings.hero_text }};
-    --fh-hero-muted: {{ section.settings.hero_muted_text }};
+    --fh-hero-heading: {{ hero_heading_color }};
+    --fh-hero-text: {{ hero_text_color }};
+    --fh-hero-muted: {{ hero_muted_color }};
     --fh-hero-accent: {{ section.settings.accent_color }};
-    --fh-button-light-bg: {{ section.settings.primary_button_background }};
-    --fh-button-light-text: {{ section.settings.primary_button_text }};
-    --fh-button-light-border: {{ section.settings.primary_button_border }};
-    --fh-button-light-hover-bg: {{ section.settings.primary_button_hover_background }};
-    --fh-button-light-hover-text: {{ section.settings.primary_button_hover_text }};
+    --fh-button-light-bg: {{ primary_button_bg }};
+    --fh-button-light-text: {{ primary_button_text }};
+    --fh-button-light-border: {{ primary_button_border }};
+    --fh-button-light-hover-bg: {{ primary_button_hover_bg }};
+    --fh-button-light-hover-text: {{ primary_button_hover_text }};
     --fh-button-ghost-bg: {{ section.settings.secondary_button_background }};
     --fh-button-ghost-text: {{ section.settings.secondary_button_text }};
     --fh-button-ghost-border: {{ section.settings.secondary_button_border }};

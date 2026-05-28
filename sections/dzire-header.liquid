@@ -74,13 +74,13 @@
                 assign dropdown_link = routes.all_products_collection_url
               endif
             %}
-            <details class="dzire-header__dropdown" {{ block.shopify_attributes }}>
-              <summary>
+            <div class="dzire-header__dropdown" {{ block.shopify_attributes }}>
+              <a class="dzire-header__dropdown-trigger" href="{{ dropdown_link }}">
                 <span>{{ block.settings.label }}</span>
                 <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-              </summary>
+              </a>
               <div class="dzire-header__dropdown-panel">
                 <a class="dzire-header__dropdown-feature" href="{{ dropdown_link }}">
                   <strong>{{ block.settings.label }}</strong>
@@ -112,7 +112,7 @@
                   {% endfor %}
                 </div>
               </div>
-            </details>
+            </div>
           {% endif %}
         {% endfor %}
       </nav>

@@ -44,6 +44,45 @@ body.dzire-design-active :is(h1, h2, h3, h4, h5, h6) {
   letter-spacing: 0;
 }
 
+body.dzire-design-active .fragrance-home :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--fh-heading-text, var(--dzire-heading));
+}
+
+body.dzire-design-active .fragrance-home__hero h1,
+body.dzire-design-active .fragrance-home__featured-row strong,
+body.dzire-design-active .fragrance-home__hero-metrics strong {
+  color: var(--fh-hero-heading, var(--dzire-heading));
+}
+
+body.dzire-design-active .fragrance-home__hero,
+body.dzire-design-active .fragrance-home__hero-text {
+  color: var(--fh-hero-muted, #fffdf8);
+}
+
+body.dzire-design-active .fragrance-home__eyebrow--light,
+body.dzire-design-active .fragrance-home__featured-kicker,
+body.dzire-design-active .fragrance-home__featured-row small {
+  color: var(--fh-hero-accent, var(--dzire-accent));
+}
+
+body.dzire-design-active .fragrance-home__secondary h2 {
+  color: var(--fh-secondary-text, var(--fh-heading-text, var(--dzire-heading)));
+}
+
+body.dzire-design-active .fragrance-home__atelier h2 {
+  color: var(--fh-atelier-text, var(--fh-heading-text, var(--dzire-heading)));
+}
+
+body.dzire-design-active .fragrance-home__newsletter h2 {
+  color: var(--fh-newsletter-text, var(--fh-heading-text, var(--dzire-heading)));
+}
+
+body.dzire-design-active .fragrance-home__product-copy h3,
+body.dzire-design-active .fragrance-home__reason-grid h3,
+body.dzire-design-active .fragrance-home__experience-grid h3 {
+  color: var(--fh-card-text, var(--fh-heading-text, var(--dzire-heading)));
+}
+
 body.dzire-design-active :is(.button, button[type="submit"], .shopify-payment-button__button) {
   border-radius: var(--dzire-button-radius);
   font-weight: 800;
