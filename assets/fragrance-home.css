@@ -9,12 +9,70 @@
   --fh-brass: #b08a45;
   --fh-muted: #6d675f;
   --fh-line: rgb(17 16 13 / 12%);
+  --fh-section-width: 1180px;
+  --fh-section-gutter: 32px;
+  --fh-mobile-gutter: 24px;
   --fh-heading-text: var(--fh-card-text, var(--fh-ink));
   --fh-body-text: var(--fh-card-text, var(--fh-ink));
   --fh-muted-text: var(--fh-card-muted, var(--fh-muted));
   background: var(--fh-section-bg, var(--fh-paper));
   color: var(--fh-body-text);
   isolation: isolate;
+}
+
+.fragrance-home--full-width {
+  --fh-section-width: 100%;
+  --fh-section-gutter: 0px;
+  --fh-mobile-gutter: 0px;
+}
+
+.fragrance-home--use-color-scheme {
+  --fh-section-bg: var(--color-background) !important;
+  --fh-hero-bg: var(--color-background) !important;
+  --fh-hero-heading: var(--color-foreground-heading) !important;
+  --fh-hero-text: var(--color-foreground) !important;
+  --fh-hero-muted: var(--color-foreground-muted) !important;
+  --fh-hero-accent: var(--color-primary) !important;
+  --fh-card-bg: var(--color-background) !important;
+  --fh-card-text: var(--color-foreground-heading) !important;
+  --fh-card-muted: var(--color-foreground-muted) !important;
+  --fh-card-border: var(--color-border) !important;
+  --fh-accent: var(--color-primary) !important;
+  --fh-button-light-bg: var(--color-primary-button-background) !important;
+  --fh-button-light-text: var(--color-primary-button-text) !important;
+  --fh-button-light-border: var(--color-primary-button-border) !important;
+  --fh-button-light-hover-bg: var(--color-primary-button-hover-background) !important;
+  --fh-button-light-hover-text: var(--color-primary-button-hover-text) !important;
+  --fh-button-dark-bg: var(--color-primary-button-background) !important;
+  --fh-button-dark-text: var(--color-primary-button-text) !important;
+  --fh-button-dark-border: var(--color-primary-button-border) !important;
+  --fh-button-ghost-bg: var(--color-secondary-button-background) !important;
+  --fh-button-ghost-text: var(--color-secondary-button-text) !important;
+  --fh-button-ghost-border: var(--color-secondary-button-border) !important;
+  --fh-secondary-bg: var(--color-background) !important;
+  --fh-secondary-text: var(--color-foreground-heading) !important;
+  --fh-secondary-muted: var(--color-foreground-muted) !important;
+  --fh-atelier-bg: var(--color-background) !important;
+  --fh-atelier-text: var(--color-foreground-heading) !important;
+  --fh-atelier-muted: var(--color-foreground-muted) !important;
+  --fh-atelier-accent: var(--color-primary) !important;
+  --fh-atelier-border: var(--color-border) !important;
+  --fh-newsletter-bg: var(--color-background) !important;
+  --fh-newsletter-text: var(--color-foreground-heading) !important;
+  --fh-newsletter-muted: var(--color-foreground-muted) !important;
+  --fh-newsletter-input-bg: var(--color-input-background) !important;
+  --fh-newsletter-input-text: var(--color-input-text) !important;
+  --fh-newsletter-input-border: var(--color-input-border) !important;
+  --fh-newsletter-button-bg: var(--color-primary-button-background) !important;
+  --fh-newsletter-button-text: var(--color-primary-button-text) !important;
+  --fh-nav-bg: var(--color-background) !important;
+  --fh-nav-text: var(--color-foreground) !important;
+  --fh-nav-border: var(--color-border) !important;
+  --fh-nav-hover-bg: rgb(var(--color-foreground-rgb) / var(--opacity-10-25)) !important;
+  --fh-badge-bg: var(--color-primary) !important;
+  --fh-badge-text: var(--color-primary-button-text) !important;
+  --fh-product-link-bg: var(--color-primary-button-background) !important;
+  --fh-product-link-text: var(--color-primary-button-text) !important;
 }
 
 .fragrance-home a {
@@ -121,7 +179,7 @@
   margin: 0 auto;
   padding: 112px 24px 34px;
   position: relative;
-  width: min(1180px, 100%);
+  width: min(var(--fh-section-width, 1180px), calc(100% - var(--fh-section-gutter, 0px)));
   z-index: 1;
 }
 
@@ -289,7 +347,7 @@
 .fragrance-home__atelier,
 .fragrance-home__newsletter {
   margin: 0 auto;
-  width: min(1180px, calc(100% - 32px));
+  width: min(var(--fh-section-width, 1180px), calc(100% - var(--fh-section-gutter, 32px)));
 }
 
 .fragrance-home__trust-row {
@@ -747,7 +805,7 @@
   margin-bottom: 0;
   min-height: 460px;
   overflow: hidden;
-  width: 100%;
+  width: min(var(--fh-section-width, 100%), calc(100% - var(--fh-section-gutter, 0px)));
 }
 
 .fragrance-home__atelier-media {
@@ -814,7 +872,7 @@
   gap: 30px;
   grid-template-columns: 1fr 1fr;
   padding: 42px 24px;
-  width: 100%;
+  width: min(var(--fh-section-width, 100%), calc(100% - var(--fh-section-gutter, 0px)));
 }
 
 .fragrance-home__newsletter > div,
@@ -993,7 +1051,7 @@
   .fragrance-home__secondary,
   .fragrance-home__experience,
   .fragrance-home__reviews {
-    width: min(100% - 24px, 1180px);
+    width: min(var(--fh-section-width, 1180px), calc(100% - var(--fh-mobile-gutter, 24px)));
   }
 
   .fragrance-home__moods {

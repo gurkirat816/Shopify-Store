@@ -10,8 +10,11 @@
 %}
 
 <div
-  class="fragrance-home"
+  class="fragrance-home fragrance-home--{{ section.settings.section_width | default: 'full-width' }} color-{{ section.settings.color_scheme | default: 'scheme-1' }}{% if section.settings.use_color_scheme %} fragrance-home--use-color-scheme{% endif %} spacing-style"
   style="
+    {% render 'spacing-style', settings: section.settings %}
+    --fh-section-width: {% if section.settings.section_width == 'full-width' %}100%{% else %}1180px{% endif %};
+    --fh-section-gutter: {% if section.settings.section_width == 'full-width' %}0px{% else %}32px{% endif %};
     --fh-section-bg: {{ section.settings.section_background }};
     --fh-atelier-bg: {{ section.settings.section_background }};
     --fh-atelier-text: {{ section.settings.text_color }};
@@ -63,6 +66,58 @@
 {
   "name": "Fragrance custom perfume",
   "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "full-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:settings.color_scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_color_scheme",
+      "label": "Use Horizon color scheme",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
     {
       "type": "image_picker",
       "id": "image",

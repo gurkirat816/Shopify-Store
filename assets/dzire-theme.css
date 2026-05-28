@@ -7,8 +7,34 @@
   --dz-cream: #f8f2e6;
   --dz-line: rgb(18 17 14 / 12%);
   --dz-muted: #6d675f;
+  --dz-section-width: 1240px;
+  --dz-section-gutter: 0px;
   color: var(--dz-ink);
   font-size: 14px;
+}
+
+.dzire-shell--use-color-scheme {
+  --dz-header-bg: var(--color-background) !important;
+  --dz-header-text: var(--color-foreground-heading) !important;
+  --dz-header-muted: var(--color-foreground-muted) !important;
+  --dz-header-border: var(--color-border) !important;
+  --dz-announcement-bg: var(--color-primary) !important;
+  --dz-announcement-text: var(--color-primary-button-text) !important;
+  --dz-header-link-hover: rgb(var(--color-foreground-rgb) / var(--opacity-10-25)) !important;
+  --dz-header-button-bg: var(--color-secondary-button-background) !important;
+  --dz-header-button-text: var(--color-secondary-button-text) !important;
+  --dz-header-button-border: var(--color-secondary-button-border) !important;
+  --dz-cart-badge-bg: var(--color-primary) !important;
+  --dz-cart-badge-text: var(--color-primary-button-text) !important;
+  --dz-footer-bg: var(--color-background) !important;
+  --dz-footer-text: var(--color-foreground-heading) !important;
+  --dz-footer-muted: var(--color-foreground-muted) !important;
+  --dz-footer-accent: var(--color-primary) !important;
+  --dz-footer-border: var(--color-border) !important;
+  --dz-footer-input-bg: var(--color-input-background) !important;
+  --dz-footer-input-text: var(--color-input-text) !important;
+  --dz-footer-button-bg: var(--color-primary-button-background) !important;
+  --dz-footer-button-text: var(--color-primary-button-text) !important;
 }
 
 .dzire-shell a {
@@ -56,7 +82,7 @@
   margin: 0 auto;
   min-height: 72px;
   padding: 0 24px;
-  width: min(1240px, 100%);
+  width: min(var(--dz-section-width, 1240px), calc(100% - var(--dz-section-gutter, 0px)));
 }
 
 .dzire-header__brand {
@@ -340,7 +366,7 @@
   grid-template-columns: 1.05fr 1.6fr;
   margin: 0 auto;
   padding: 56px 24px 34px;
-  width: min(1240px, 100%);
+  width: min(var(--dz-section-width, 1240px), calc(100% - var(--dz-section-gutter, 0px)));
 }
 
 .dzire-footer__brand {
@@ -481,7 +507,7 @@
   justify-content: space-between;
   margin: 0 auto;
   padding: 18px 24px 24px;
-  width: min(1240px, 100%);
+  width: min(var(--dz-section-width, 1240px), calc(100% - var(--dz-section-gutter, 0px)));
 }
 
 .dzire-footer__bottom-links {
