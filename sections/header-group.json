@@ -14,31 +14,106 @@
     "dzire_header": {
       "type": "dzire-header",
       "blocks": {
-        "link_shop": {
-          "type": "link",
+        "dropdown_shop": {
+          "type": "dropdown",
           "settings": {
             "label": "Shop",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/all",
+            "menu_text": "Start with the full Dzire fragrance shelf.",
+            "item_1_label": "All scents",
+            "item_1_link": "shopify://collections/all",
+            "item_1_text": "Browse every parfum.",
+            "item_2_label": "New arrivals",
+            "item_2_link": "shopify://collections/all",
+            "item_2_text": "Latest drops and edits.",
+            "item_3_label": "Best sellers",
+            "item_3_link": "shopify://collections/all",
+            "item_3_text": "Customer-loved signatures.",
+            "item_4_label": "Gift sets",
+            "item_4_link": "shopify://collections/all",
+            "item_4_text": "Ready-to-gift picks.",
+            "item_5_label": "Travel sprays",
+            "item_5_link": "shopify://collections/all",
+            "item_5_text": "Easy scents for bags and trips.",
+            "item_6_label": "Discovery sets",
+            "item_6_link": "shopify://collections/all",
+            "item_6_text": "Sample more before choosing.",
+            "item_7_label": "Premium parfums",
+            "item_7_link": "shopify://collections/all",
+            "item_7_text": "Polished daily and evening scents.",
+            "item_8_label": "Sale edits",
+            "item_8_link": "shopify://collections/all",
+            "item_8_text": "Limited offers and last pieces."
           }
         },
-        "link_new": {
-          "type": "link",
+        "dropdown_families": {
+          "type": "dropdown",
           "settings": {
-            "label": "New arrivals",
-            "link": "shopify://collections/all"
+            "label": "Scent Families",
+            "link": "shopify://collections/all",
+            "menu_text": "Choose by the notes and texture you want.",
+            "item_1_label": "Oud and woods",
+            "item_1_link": "shopify://collections/all",
+            "item_1_text": "Deep, smoky, and warm.",
+            "item_2_label": "Amber and vanilla",
+            "item_2_link": "shopify://collections/all",
+            "item_2_text": "Soft sweetness with depth.",
+            "item_3_label": "Fresh citrus",
+            "item_3_link": "shopify://collections/all",
+            "item_3_text": "Clean, bright daily wear.",
+            "item_4_label": "Floral musk",
+            "item_4_link": "shopify://collections/all",
+            "item_4_text": "Smooth, romantic, and polished.",
+            "item_5_label": "Leather and spice",
+            "item_5_link": "shopify://collections/all",
+            "item_5_text": "Bold evening character.",
+            "item_6_label": "Aquatic fresh",
+            "item_6_link": "shopify://collections/all",
+            "item_6_text": "Airy, crisp, easy to wear.",
+            "item_7_label": "",
+            "item_7_link": "",
+            "item_7_text": "",
+            "item_8_label": "",
+            "item_8_link": "",
+            "item_8_text": ""
           }
         },
-        "link_arabian": {
-          "type": "link",
+        "dropdown_occasions": {
+          "type": "dropdown",
           "settings": {
-            "label": "Arabian perfume",
-            "link": "shopify://collections/all"
+            "label": "Occasions",
+            "link": "shopify://collections/all",
+            "menu_text": "Find a scent for the moment.",
+            "item_1_label": "Everyday wear",
+            "item_1_link": "shopify://collections/all",
+            "item_1_text": "Easy signatures for daily rhythm.",
+            "item_2_label": "Evening scents",
+            "item_2_link": "shopify://collections/all",
+            "item_2_text": "Deeper trails after dark.",
+            "item_3_label": "Office friendly",
+            "item_3_link": "shopify://collections/all",
+            "item_3_text": "Clean and refined projection.",
+            "item_4_label": "Date night",
+            "item_4_link": "shopify://collections/all",
+            "item_4_text": "Warm, memorable, close-wearing.",
+            "item_5_label": "Wedding and party",
+            "item_5_link": "shopify://collections/all",
+            "item_5_text": "Dressier scents with presence.",
+            "item_6_label": "Gifting",
+            "item_6_link": "shopify://collections/all",
+            "item_6_text": "Safe, elegant crowd-pleasers.",
+            "item_7_label": "",
+            "item_7_link": "",
+            "item_7_text": "",
+            "item_8_label": "",
+            "item_8_link": "",
+            "item_8_text": ""
           }
         },
-        "link_gifts": {
+        "link_discovery": {
           "type": "link",
           "settings": {
-            "label": "Gifts",
+            "label": "Discovery Sets",
             "link": "shopify://collections/all"
           }
         },
@@ -51,10 +126,10 @@
         }
       },
       "block_order": [
-        "link_shop",
-        "link_new",
-        "link_arabian",
-        "link_gifts",
+        "dropdown_shop",
+        "dropdown_families",
+        "dropdown_occasions",
+        "link_discovery",
         "link_contact"
       ],
       "settings": {

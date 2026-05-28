@@ -67,6 +67,52 @@
               endif
             %}
             <a href="{{ nav_link }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+          {% elsif block.type == 'dropdown' %}
+            {% liquid
+              assign dropdown_link = block.settings.link
+              if dropdown_link == blank
+                assign dropdown_link = routes.all_products_collection_url
+              endif
+            %}
+            <details class="dzire-header__dropdown" {{ block.shopify_attributes }}>
+              <summary>
+                <span>{{ block.settings.label }}</span>
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </summary>
+              <div class="dzire-header__dropdown-panel">
+                <a class="dzire-header__dropdown-feature" href="{{ dropdown_link }}">
+                  <strong>{{ block.settings.label }}</strong>
+                  {% if block.settings.menu_text != blank %}
+                    <span>{{ block.settings.menu_text }}</span>
+                  {% endif %}
+                </a>
+                <div class="dzire-header__dropdown-grid">
+                  {% for i in (1..8) %}
+                    {% liquid
+                      assign label_key = 'item_' | append: i | append: '_label'
+                      assign link_key = 'item_' | append: i | append: '_link'
+                      assign text_key = 'item_' | append: i | append: '_text'
+                      assign item_label = block.settings[label_key]
+                      assign item_link = block.settings[link_key]
+                      assign item_text = block.settings[text_key]
+                      if item_link == blank
+                        assign item_link = routes.all_products_collection_url
+                      endif
+                    %}
+                    {% if item_label != blank %}
+                      <a class="dzire-header__dropdown-item" href="{{ item_link }}">
+                        <span>{{ item_label }}</span>
+                        {% if item_text != blank %}
+                          <small>{{ item_text }}</small>
+                        {% endif %}
+                      </a>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+            </details>
           {% endif %}
         {% endfor %}
       </nav>
@@ -113,6 +159,26 @@
                   endif
                 %}
                 <a href="{{ mobile_link }}">{{ block.settings.label }}</a>
+              {% elsif block.type == 'dropdown' %}
+                <details class="dzire-header__mobile-group">
+                  <summary>{{ block.settings.label }}</summary>
+                  <div>
+                    {% for i in (1..8) %}
+                      {% liquid
+                        assign label_key = 'item_' | append: i | append: '_label'
+                        assign link_key = 'item_' | append: i | append: '_link'
+                        assign item_label = block.settings[label_key]
+                        assign item_link = block.settings[link_key]
+                        if item_link == blank
+                          assign item_link = routes.all_products_collection_url
+                        endif
+                      %}
+                      {% if item_label != blank %}
+                        <a href="{{ item_link }}">{{ item_label }}</a>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </details>
               {% endif %}
             {% endfor %}
             {% if section.settings.show_search %}
@@ -294,6 +360,189 @@
           "label": "Link"
         }
       ]
+    },
+    {
+      "type": "dropdown",
+      "name": "Dropdown menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Shop scents"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Main link"
+        },
+        {
+          "type": "textarea",
+          "id": "menu_text",
+          "label": "Menu description",
+          "default": "Browse curated fragrance edits."
+        },
+        {
+          "type": "header",
+          "content": "Item 1"
+        },
+        {
+          "type": "text",
+          "id": "item_1_label",
+          "label": "Label",
+          "default": "All scents"
+        },
+        {
+          "type": "url",
+          "id": "item_1_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "item_1_text",
+          "label": "Description",
+          "default": "Explore every parfum."
+        },
+        {
+          "type": "header",
+          "content": "Item 2"
+        },
+        {
+          "type": "text",
+          "id": "item_2_label",
+          "label": "Label",
+          "default": "New arrivals"
+        },
+        {
+          "type": "url",
+          "id": "item_2_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "item_2_text",
+          "label": "Description",
+          "default": "Fresh drops and latest edits."
+        },
+        {
+          "type": "header",
+          "content": "Item 3"
+        },
+        {
+          "type": "text",
+          "id": "item_3_label",
+          "label": "Label",
+          "default": "Best sellers"
+        },
+        {
+          "type": "url",
+          "id": "item_3_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "item_3_text",
+          "label": "Description",
+          "default": "Customer-loved signatures."
+        },
+        {
+          "type": "header",
+          "content": "Item 4"
+        },
+        {
+          "type": "text",
+          "id": "item_4_label",
+          "label": "Label",
+          "default": "Gift sets"
+        },
+        {
+          "type": "url",
+          "id": "item_4_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "item_4_text",
+          "label": "Description",
+          "default": "Ready-to-gift fragrance picks."
+        },
+        {
+          "type": "header",
+          "content": "Item 5"
+        },
+        {
+          "type": "text",
+          "id": "item_5_label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "item_5_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "item_5_text",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Item 6"
+        },
+        {
+          "type": "text",
+          "id": "item_6_label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "item_6_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "item_6_text",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Item 7"
+        },
+        {
+          "type": "text",
+          "id": "item_7_label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "item_7_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "item_7_text",
+          "label": "Description"
+        },
+        {
+          "type": "header",
+          "content": "Item 8"
+        },
+        {
+          "type": "text",
+          "id": "item_8_label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "item_8_link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "item_8_text",
+          "label": "Description"
+        }
+      ]
     }
   ],
   "presets": [
@@ -301,30 +550,69 @@
       "name": "Dzire header",
       "blocks": [
         {
-          "type": "link",
+          "type": "dropdown",
           "settings": {
             "label": "Shop",
-            "link": "shopify://collections/all"
+            "link": "shopify://collections/all",
+            "menu_text": "Start with the full fragrance shelf.",
+            "item_1_label": "All scents",
+            "item_1_link": "shopify://collections/all",
+            "item_1_text": "Browse every parfum.",
+            "item_2_label": "New arrivals",
+            "item_2_link": "shopify://collections/all",
+            "item_2_text": "Latest drops and edits.",
+            "item_3_label": "Best sellers",
+            "item_3_link": "shopify://collections/all",
+            "item_3_text": "Customer-loved signatures.",
+            "item_4_label": "Gift sets",
+            "item_4_link": "shopify://collections/all",
+            "item_4_text": "Ready-to-gift picks."
+          }
+        },
+        {
+          "type": "dropdown",
+          "settings": {
+            "label": "Scent Families",
+            "link": "shopify://collections/all",
+            "menu_text": "Choose by notes and texture.",
+            "item_1_label": "Oud and woods",
+            "item_1_link": "shopify://collections/all",
+            "item_1_text": "Deep, smoky, and warm.",
+            "item_2_label": "Amber and vanilla",
+            "item_2_link": "shopify://collections/all",
+            "item_2_text": "Soft sweetness with depth.",
+            "item_3_label": "Fresh citrus",
+            "item_3_link": "shopify://collections/all",
+            "item_3_text": "Clean, bright daily wear.",
+            "item_4_label": "Floral musk",
+            "item_4_link": "shopify://collections/all",
+            "item_4_text": "Smooth and polished."
+          }
+        },
+        {
+          "type": "dropdown",
+          "settings": {
+            "label": "Occasions",
+            "link": "shopify://collections/all",
+            "menu_text": "Find a scent for the moment.",
+            "item_1_label": "Everyday wear",
+            "item_1_link": "shopify://collections/all",
+            "item_1_text": "Easy signatures.",
+            "item_2_label": "Evening scents",
+            "item_2_link": "shopify://collections/all",
+            "item_2_text": "Deeper trails.",
+            "item_3_label": "Office friendly",
+            "item_3_link": "shopify://collections/all",
+            "item_3_text": "Clean and refined.",
+            "item_4_label": "Gifting",
+            "item_4_link": "shopify://collections/all",
+            "item_4_text": "Elegant crowd-pleasers."
           }
         },
         {
           "type": "link",
           "settings": {
-            "label": "New arrivals",
-            "link": "shopify://collections/all"
-          }
-        },
-        {
-          "type": "link",
-          "settings": {
-            "label": "Arabian perfume",
-            "link": "shopify://collections/all"
-          }
-        },
-        {
-          "type": "link",
-          "settings": {
-            "label": "Gifts",
+            "label": "Discovery Sets",
             "link": "shopify://collections/all"
           }
         }
